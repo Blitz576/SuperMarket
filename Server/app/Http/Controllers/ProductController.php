@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\ProductImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+
 class ProductController extends Controller
 {
     /**
@@ -40,14 +41,14 @@ class ProductController extends Controller
         $product->price = $request->price;
         $product->stock = $request->stock;
         $product->slug = Str::slug($request->title);
-        if($request->show_in_slider){
+        if ($request->show_in_slider) {
             $product->show_in_slider = $request->slider;
         }
         $product->save();
 
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
-                $imageName = time().'_'.$image->getClientOriginalName();
+                $imageName = time() . '_' . $image->getClientOriginalName();
                 $image->move(public_path('images'), $imageName);
 
                 ProductImage::create([
@@ -56,6 +57,7 @@ class ProductController extends Controller
                 ]);
             }
         }
+        return redirect()->route('products.index');
     }
 
     /**
@@ -65,7 +67,7 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         $productImage = ProductImage::where('product_id', $id)->get()->first();
-        return view('dashboard.products.show', ['product' => $product,'image'=>$productImage ]);
+        return view('dashboard.products.show', ['product' => $product, 'image' => $productImage]);
     }
 
     /**
@@ -73,7 +75,9 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $categories = Category::all();
+        $product = Product::find($id);
+        return view('dashboard.products.edit', ['categories' => $categories, 'product' => $product]);
     }
 
     /**
@@ -81,7 +85,19 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $product = Product::findOrFail($id);
+
+        $product->title = $request->input('title');
+        $product->description = $request->input('description');
+        $product->category_id = $request->input('category');
+        $product->rating = $request->input('rate');
+        $product->price = $request->input('price');
+        $product->stock = $request->input('stock');
+        $product->show_in_slider = $request->input('slider');
+        $product->save();
+
+        return redirect()->route('products.show', ['product' => $product->id]);
+
     }
 
     /**
