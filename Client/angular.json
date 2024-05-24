@@ -29,6 +29,7 @@
               "node_modules/bootstrap-icons/font/bootstrap-icons.css",
               "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
               "node_modules/primeng/resources/primeng.min.css",
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
               "src/styles.css"
             ],
             "scripts": [
@@ -99,6 +100,10 @@
     }
   },
   "cli": {
+<<<<<<< HEAD
     "analytics": "e0230be5-f7e5-47f0-8b6d-8bda397a65f2"
+=======
+    "analytics": "33c486bf-11cb-47ad-bd6c-8d99d821f089"
+>>>>>>> 0dc17d0b9e8e1e0cb35d3c64657be3db384c5a24
   }
 }
