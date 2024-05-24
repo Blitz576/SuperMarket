@@ -4,6 +4,7 @@ use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\SettingController;
 use App\Http\Controllers\Dashboard\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,4 +27,5 @@ Route::put('settings', [SettingController::class, 'update']);
 Route::resource('users', UserController::class);
 Route::post('users/{user}/change-status', [UserController::class, 'changeStatus']);
 
-Route::resource('categories', Categor0yController::class);
+Route::resource('categories', CategoryController::class);
+Route::resource('/products',ProductController::class);

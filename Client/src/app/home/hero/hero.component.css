@@ -1,0 +1,5 @@
+#carouselExampleCaptions .carousel-inner img{
+  min-width: 80%;
+  max-width: 100%;
+  max-height: 500px;
+}

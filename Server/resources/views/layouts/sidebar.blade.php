@@ -31,7 +31,15 @@
                         <li><i class="menu-icon fa fa-plus"></i><a href="{{ route('categories.create') }}">Add New Category</a></li>
                     </ul>
                 </li>
-                
+
+
+                <li class="menu-item-has-children dropdown {{ Request::is('*products*') ? 'show' : '' }}">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="{{ Request::is('*products*') ? 'true' : 'false' }}"> <i class="menu-icon fa fa-tasks"></i>Products</a>
+                    <ul class="sub-menu children dropdown-menu {{ Request::is('*products*') ? 'show' : '' }}">
+                        <li><i class="menu-icon fa fa-tasks"></i><a href="{{ route('products.index') }}">List Products</a></li>
+                        <li><i class="menu-icon fa fa-plus"></i><a href="{{ route('products.create') }}">Add New Product</a></li>
+                    </ul>
+                </li>
                 
                 <li class="menu-item-has-children dropdown {{ Request::is('*users*') ? 'show' : '' }}">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="{{ Request::is('*users*') ? 'true' : 'false' }}"> <i class="menu-icon fa fa-users"></i>Users</a>
