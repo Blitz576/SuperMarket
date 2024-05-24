@@ -27,8 +27,9 @@
     border-radius: 2rem;
     box-shadow: none;
     margin: 10px;
+    margin-right: 0;
     height: 40px;
-    transition: border 0.3s linear, background-color 0.3s linear;
+    transition: border 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
 
 .form-control:focus {
@@ -40,8 +41,8 @@
     background-color: #f8f9fa;
     border: none;
     border-radius: 2rem;
-    height: 25px;
-    margin-top:15px;
+    height: 40px;
+    margin-top: 10px;
 }
 
 .btn-dark {
@@ -62,5 +63,10 @@
 .forget-password{
     color:#5c5c5c;
     margin: 10px;
+    font-weight: 500;
+    transition: color 0.3 linear;
 }
 
+.forget-password:hover{
+    color:black
+}
