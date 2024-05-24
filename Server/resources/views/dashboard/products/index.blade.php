@@ -13,10 +13,11 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Title</th>
+                    <th scope="col">Category</th>
                     <th scope="col">Stock</th>
                     <th scope="col">Rating</th>
                     <th scope="col">Status</th>
-                    <th scope="col">Category</th>
+                    <th scope="col">Slider</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -25,6 +26,7 @@
                 <tr>
                     <th>{{$product->id}}</th>
                     <td>{{$product->title}}</td>
+                    <td>{{$product->category->name}}</td>
                     <td>{{$product->stock}}</td>
                     <td>
                         @for ($i = 1; $i <= $product->rating; $i++)
@@ -32,7 +34,8 @@
                         @endfor
                     </td>
                     <th >{{$product->status}}</th>
-                    <td>{{$product->category->name}}</td>
+                    <td>{{$product->show_in_slider}}</td>
+
                     <td>
                         <a href="{{ route('products.show', $product->id) }}" class="btn btn-info">View</a>
                         <a href="{{ route('products.edit', $product->id) }}" class="btn btn-warning">Edit</a>
