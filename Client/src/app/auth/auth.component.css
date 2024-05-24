@@ -36,10 +36,9 @@
 }
 
 .vertical-line {
-    width: 1px; 
+    width: 2px; 
     margin: auto;
-    height: 80%;
+    height: 90%;
     background-color: #ccc; 
-    border: none; 
-    margin: 0; 
+    border: none;  
 }
