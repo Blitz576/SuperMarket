@@ -16,9 +16,8 @@
                 </li>
 
                 <h3 class="menu-title">Items</h3><!-- /.menu-title -->
-
                 <li>
-                    <a href="widgets.html"> <i class="menu-icon fa fa-shopping-cart"></i>Products </a>
+                    <a href="{{ route('products.index')}}"> <i class="menu-icon fa fa-shopping-cart"></i>Products </a>
                 </li>
                 <li>
                     <a href="widgets.html"> <i class="menu-icon fa fa-list"></i>Categories </a>

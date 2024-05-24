@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('user_id');
-            $table->unsignedInteger('cart_id');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('cart_id');
             $table->decimal('total_price', 10, 2)->default(0.00);
             $table->enum('status', ['pending', 'paid', 'processing', 'shipped', 'completed', 'cancelled', 'rejected', 'refunded'])->default('pending');
             $table->text('notes')->nullable();
