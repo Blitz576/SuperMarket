@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductImage;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Str;
 class ProductController extends Controller
 {
     /**
@@ -12,8 +14,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products=Product::all();
-        return view('dashboard.products.index',['products'=>$products]);
+        $products = Product::all();
+        return view('dashboard.products.index', ['products' => $products]);
     }
 
     /**
@@ -21,7 +23,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view('dashboard.products.create', ['categories' => $categories]);
     }
 
     /**
@@ -29,7 +32,27 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product = new Product();
+        $product->title = $request->title;
+        $product->description = $request->description;
+        $product->category_id = $request->category;
+        $product->rating = $request->rate;
+        $product->price = $request->price;
+        $product->stock = $request->stock;
+        $product->slug = Str::slug($request->title, '-');
+        $product->show_in_slider = $request->slider;
+        $product->save();
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $imagePath = $image->store('images', 'public');
+
+                $productImage = new ProductImage();
+                $productImage->image = $imagePath;
+                $productImage->product_id = $product->id;
+                $productImage->save();
+            }
+        }
     }
 
     /**
@@ -37,8 +60,8 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        $product=Product::find($id);
-        return view('dashboard.products.show',['product'=>$product]);
+        $product = Product::find($id);
+        return view('dashboard.products.show', ['product' => $product]);
     }
 
     /**
