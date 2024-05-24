@@ -39,18 +39,21 @@ class ProductController extends Controller
         $product->rating = $request->rate;
         $product->price = $request->price;
         $product->stock = $request->stock;
-        $product->slug = Str::slug($request->title, '-');
-        $product->show_in_slider = $request->slider;
+        $product->slug = Str::slug($request->title);
+        if($request->show_in_slider){
+            $product->show_in_slider = $request->slider;
+        }
         $product->save();
 
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
-                $imagePath = $image->store('images', 'public');
+                $imageName = time().'_'.$image->getClientOriginalName();
+                $image->move(public_path('images'), $imageName);
 
-                $productImage = new ProductImage();
-                $productImage->image = $imagePath;
-                $productImage->product_id = $product->id;
-                $productImage->save();
+                ProductImage::create([
+                    'image' => $imageName,
+                    'product_id' => $product->id
+                ]);
             }
         }
     }
@@ -61,7 +64,8 @@ class ProductController extends Controller
     public function show(string $id)
     {
         $product = Product::find($id);
-        return view('dashboard.products.show', ['product' => $product]);
+        $productImage = ProductImage::where('product_id', $id)->get()->first();
+        return view('dashboard.products.show', ['product' => $product,'image'=>$productImage ]);
     }
 
     /**

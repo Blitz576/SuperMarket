@@ -10,7 +10,7 @@
         </div>
         <div class="card-body">
             <div class="mx-auto d-block">
-                <img class="rounded mx-auto d-block" src="{{asset('images/admin.jpg')}}" alt="Card image">
+                <img class="rounded mx-auto d-block" src="{{ asset('images/' . $image->image) }}" alt="Card image" width="200" height="150">
                 <h5 class="text-sm-center mt-2 mb-1">{{$product->title}}</h5>
                 <div class="text-sm-center  mt-2 mb-1">{{$product->description}}</div>
                 <div class="text-sm-center ">Stock: {{$product->stock}} {{ Str::plural('piece', $product->stock) }} </div>
