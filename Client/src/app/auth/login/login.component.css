@@ -28,6 +28,7 @@
     box-shadow: none;
     margin: 10px;
     height: 40px;
+    transition: border 0.3s linear, background-color 0.3s linear;
 }
 
 .form-control:focus {
@@ -51,7 +52,7 @@
     height: 45px;
     font-weight: 500;
     margin-left: 2%;
-
+    transition: background-color 0.3 ease;
 }
 
 .btn-dark:hover {
