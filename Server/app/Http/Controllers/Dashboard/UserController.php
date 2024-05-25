@@ -41,14 +41,14 @@ class UserController extends Controller
             ->orderBy('id', 'DESC')
             ->paginate(30);
 
-        return view('users.index', compact('users'));
+        return view('dashboard.users.index', compact('users'));
     }
 
     public function create()
     {
         $user = new User();
 
-        return view('users.create' , compact('user'));
+        return view('dashboard.users.create' , compact('user'));
     }
 
     public function store(StoreUserRequest $request)
@@ -71,13 +71,13 @@ class UserController extends Controller
         $user_orders = Order::where('user_id' , $user->id)->with('user')->get();
         $cart_products = Cart::where('user_id' , $user->id)->with('user')->get();
 
-        return view('users.show', compact('user' , 'user_orders' , 'cart_products'));
+        return view('dashboard.users.show', compact('user' , 'user_orders' , 'cart_products'));
     }
 
 
     public function edit(User $user)
     {
-        return view('users.edit', compact('user'));
+        return view('dashboard.users.edit', compact('user'));
     }
 
     public function update(UpdateUserRequest $request , User $user)

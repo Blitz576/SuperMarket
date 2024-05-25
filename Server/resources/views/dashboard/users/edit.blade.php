@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('dashboard.layouts.layout')
 @section('page_title', 'Create User')
 @section('content')
     <div class="breadcrumbs">
@@ -34,10 +34,11 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <form class="form form-vertical" method="post" action="{{ route('users.update', $user->id) }}" enctype="multipart/form-data">
+                            <form class="form form-vertical" method="post"
+                                  action="{{ route('users.update', $user->id) }}" enctype="multipart/form-data">
                                 @csrf
                                 @method('put')
-                                @include('users.form')
+                                @include('dashboard.users.form')
                             </form>
                         </div>
                     </div>

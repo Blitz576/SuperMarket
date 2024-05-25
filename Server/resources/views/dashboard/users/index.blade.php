@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('dashboard.layouts.layout')
 @section('page_title', 'Users List')
 @section('styles')
     <!-- Include jQuery -->

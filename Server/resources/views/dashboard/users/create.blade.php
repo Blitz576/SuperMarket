@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('dashboard.layouts.layout')
 @section('page_title', 'Create User')
 @section('content')
     <div class="breadcrumbs">
@@ -37,7 +37,7 @@
                             <form class="form form-vertical" method="post"
                                   action="{{ route('users.store') }}" enctype="multipart/form-data">
                                 @csrf
-                                @include('users.form')
+                                @include('dashboard.users.form')
                             </form>
                         </div>
                     </div>
