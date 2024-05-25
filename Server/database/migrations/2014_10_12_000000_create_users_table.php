@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -19,11 +20,22 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->enum('gender',['male','female']);
+            $table->enum('role',['user','administrator']);
             $table->string('image');
             $table->enum('status', ['available', 'unavailable'])->default('available');
             $table->rememberToken();
             $table->timestamps();
         });
+
+        User::create([
+            'name'          => 'Admin',
+            'email'         => 'admin@gmail.com',
+            'password'      => bcrypt('admin'),
+            'role'          => ["administrator"],
+            'status'        => 'available',
+            'created_at'    => now(),
+            'updated_at'    => now(),
+        ]);
     }
 
     /**

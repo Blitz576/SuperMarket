@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('cart_id');
             $table->decimal('total_price', 10, 2)->default(0.00);
-            $table->enum('status', ['pending', 'paid', 'processing', 'shipped', 'completed', 'cancelled', 'rejected', 'refunded'])->default('pending');
+            $table->enum('status', ['pending', 'accepted', 'rejected', 'paid', 'processing', 'shipped', 'completed', 'cancelled', 'refunded'])->default('pending');
             $table->text('notes')->nullable();
             $table->timestamps();
             
