@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Users\StoreCategoryRequest;
-use App\Http\Requests\Users\UpdateCategoryRequest;
+use App\Http\Requests\Users\StoreUserRequest;
+use App\Http\Requests\Users\UpdateUserRequest;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Models\User;
@@ -51,7 +51,7 @@ class UserController extends Controller
         return view('dashboard.users.create' , compact('user'));
     }
 
-    public function store(StoreCategoryRequest $request)
+    public function store(StoreUserRequest $request)
     {
         $data = $request->except('image' , '_token', '_method');
 
@@ -80,7 +80,7 @@ class UserController extends Controller
         return view('dashboard.users.edit', compact('user'));
     }
 
-    public function update(UpdateCategoryRequest $request , User $user)
+    public function update(UpdateUserRequest $request , User $user)
     {
         $old_image = $user->image;
         $data = $request->except('image' , '_token', '_method');

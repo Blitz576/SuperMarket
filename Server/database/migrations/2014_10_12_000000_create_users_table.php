@@ -20,8 +20,8 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->enum('gender',['male','female']);
-            $table->enum('role',['user','administrator']);
-            $table->string('image');
+            $table->enum('role',['user','administrator'])->default('user');
+            $table->string('image')->nullable();
             $table->enum('status', ['available', 'unavailable'])->default('available');
             $table->rememberToken();
             $table->timestamps();
@@ -31,7 +31,7 @@ return new class extends Migration
             'name'          => 'Admin',
             'email'         => 'admin@gmail.com',
             'password'      => bcrypt('admin'),
-            'role'          => ["administrator"],
+            'role'          => 'administrator',
             'status'        => 'available',
             'created_at'    => now(),
             'updated_at'    => now(),
