@@ -36,3 +36,6 @@ Route::get('orders',[OrderController::class,'index'])->name('orders.index');
 Route::delete('orders/{id}',[OrderController::class,'destroy'])->name('orders.destroy');
 Route::post('orders/{order}/change-status', [OrderController::class, 'changeStatus']);
 
+Route::post('categories/{category}/change-status', [CategoryController::class, 'changeStatus']);
+
+Route::resource('/products',ProductController::class);

@@ -1,5 +1,5 @@
-@extends('layouts.layout')
-@section('page_title', 'Users List')
+@extends('dashboard.layouts.layout')
+@section('page_title', 'categories List')
 @section('styles')
     <!-- Include jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -12,7 +12,7 @@
         <div class="col-sm-4">
             <div class="page-header float-left">
                 <div class="page-title">
-                    <h1>Users</h1>
+                    <h1>Categories</h1>
                 </div>
             </div>
         </div>
@@ -21,8 +21,8 @@
                 <div class="page-title">
                     <ol class="breadcrumb text-right">
                         <li><a href="#">Dashboard</a></li>
-                        <li><a href="{{ route('users.index') }}">Users</a></li>
-                        <li class="active">List Of Users</li>
+                        <li><a href="{{ route('categories.index') }}">Categories</a></li>
+                        <li class="active">List Of categories</li>
                     </ol>
                 </div>
             </div>
@@ -36,17 +36,17 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="row justify-content-between align-items-center">
-                                <strong class="col text-primary">Users</strong>
-                                <a href="{{ route('users.create') }}" class="col-2 me-2 btn btn-outline-primary rounded">Add New User</a>
+                                <strong class="col text-primary">Categories</strong>
+                                <a href="{{ route('categories.create') }}" class="col-2 me-2 btn btn-outline-primary rounded">Add New Category</a>
                             </div>
                         </div>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-12">
-                                    <form action="{{ route('users.index') }}" class="form-horizontal" method="get">
+                                    <form action="{{ route('categories.index') }}" class="form-horizontal" method="get">
                                         <div class="row form-group">
                                             <div class="col col-md-6">
-                                                <input type="text" name="search" class="form-control" placeholder="Search about user by email or phone or name">
+                                                <input type="text" name="search" class="form-control" placeholder="Search about category by name">
                                             </div>
                                             <div class="col col-md-4">
                                                 <button type="submit" class="btn btn-outline-primary rounded mx-1">Search</button>
@@ -61,30 +61,28 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Name</th>
-                                    <th scope="col">Image</th>
-                                    <th scope="col">Email</th>
+                                    <th scope="col">Cover Image</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Actions</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @forelse ($users as $user)
+                                @forelse ($categories as $category)
                                     <tr role="row" class="odd">
                                         <td>{{ $loop->iteration }}</td>
-                                        <td><img class="align-self-center rounded-circle" src="{{ $user->image_url }}" alt="" height="60" width="60"></td>
-                                        <td class="text-success fw-bold">{{ $user->name }}</td>
-                                        <td class="text-success fw-bold">{{ $user->email }}</td>
+                                        <td><img class="align-self-center rounded-circle" src="{{ $category->image_url }}" alt="" height="60" width="60"></td>
+                                        <td class="text-success fw-bold">{{ $category->name }}</td>
                                         <td>
-                                            <select class="user-status form-control col-auto" data-user-id="{{ $user->id }}">
-                                                <option value="available" {{ $user->status === 'available' ? 'selected' : '' }}>Available</option>
-                                                <option value="unavailable" {{ $user->status === 'unavailable' ? 'selected' : '' }}>UnAvailable</option>
+                                            <select class="category-status form-control col-auto" data-category-id="{{ $category->id }}">
+                                                <option value="available" {{ $category->status === 'available' ? 'selected' : '' }}>Available</option>
+                                                <option value="unavailable" {{ $category->status === 'unavailable' ? 'selected' : '' }}>UnAvailable</option>
                                             </select>
                                         </td>
                                         <td>
                                             <div class="d-flex justify-content-start align-items-center">
-                                                <a href="{{ route('users.show', $user->id) }}" class="btn btn-outline-success rounded p-2 mx-2">Show</a>
-                                                <a href="{{ route('users.edit', $user->id) }}" class="btn btn-outline-warning rounded p-2 mx-2">Edit</a>
-                                                <form class="form-inline m-0" method="post" action="{{ route('users.destroy', $user->id) }}">
+                                                <a href="{{ route('categories.show', $category->id) }}" class="btn btn-outline-success rounded p-2 mx-2">Show</a>
+                                                <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-outline-warning rounded p-2 mx-2">Edit</a>
+                                                <form class="form-inline m-0" method="post" action="{{ route('categories.destroy', $category->id) }}">
                                                     @csrf
                                                     @method ('delete')
                                                     <button type="submit" class="btn btn-outline-danger rounded p-2 mx-2 show_confirm">Delete</button>
@@ -95,7 +93,7 @@
                                 @empty
                                     <tr>
                                         <td class="text-center text-muted" style="font-size: 25px" colspan="6">
-                                            No Users Found
+                                            No categories Found
                                         </td>
                                     </tr>
                                 @endforelse
@@ -110,19 +108,19 @@
 
     <script>
         $(document).ready(function() {
-            $('.user-status').on('change', function() {
-                const userId = $(this).data('user-id');
+            $('.category-status').on('change', function() {
+                const categoryId = $(this).data('category-id');
                 const newStatus = $(this).val();
                 const csrfToken = $('meta[name="csrf-token"]').attr('content');
 
                 console.log("Sending request with:", {
-                    userId: userId,
+                    categoryId: categoryId,
                     status: newStatus,
                     _token: csrfToken
                 });
 
                 $.ajax({
-                    url: "/users/" + userId + "/change-status",
+                    url: "/categories/" + categoryId + "/change-status",
                     type: "POST",
                     data: {
                         status: newStatus,

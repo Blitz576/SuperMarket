@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('dashboard.layouts.layout')
 @section('page_title', 'Show User')
 @section('content')
     <div class="breadcrumbs">
@@ -52,7 +52,10 @@
                                     <a href="mailto:{{ $user->email }}"> <i class="fa fa-envelope-o mx-2"></i>{{ $user->email }}</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <a href="tel:{{ $user->mobile_number }}"> <i class="fa fa-phone mx-2"></i> {{ $user->mobile_number }}</a>
+                                    <a href="tel:{{ $user->mobile_number }}"> <i class="fa fa-phone mx-2"></i> {{ $user->mobile_number ?? '000 000 0000' }}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="#"> <i class="fa  fa-group mx-2"></i>Role : {{ $user->role }} </a>
                                 </li>
                                 <li class="list-group-item">
                                     <a href="#"> <i class="fa fa-calendar-o mx-2"></i>Joined At : {{ $user->created_at?->translatedFormat('l , j F Y , H:i:s') ?? 'N/A' }}</a>

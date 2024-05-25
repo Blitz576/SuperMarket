@@ -1,11 +1,11 @@
-@extends('layouts.layout')
-@section('page_title', 'Create User')
+@extends('dashboard.layouts.layout')
+@section('page_title', 'Create Category')
 @section('content')
     <div class="breadcrumbs">
         <div class="col-sm-4">
             <div class="page-header float-left">
                 <div class="page-title">
-                    <h1>Users</h1>
+                    <h1>categories</h1>
                 </div>
             </div>
         </div>
@@ -14,8 +14,8 @@
                 <div class="page-title">
                     <ol class="breadcrumb text-right">
                         <li><a href="#">Dashboard</a></li>
-                        <li><a href="{{ route('users.index') }}">Users</a></li>
-                        <li class="active">Edit user</li>
+                        <li><a href="{{ route('categories.index') }}">categories</a></li>
+                        <li class="active">Edit category</li>
                     </ol>
                 </div>
             </div>
@@ -29,15 +29,16 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="row justify-content-between align-items-center">
-                                <strong class="col text-primary">Edit User " {{ $user->name }} "</strong>
-                                <a href="{{ route('users.index') }}" class="col-2 me-2 btn btn-outline-warning rounded">Back</a>
+                                <strong class="col text-primary">Edit Category " {{ $category->name }} "</strong>
+                                <a href="{{ route('categories.index') }}" class="col-2 me-2 btn btn-outline-warning rounded">Back</a>
                             </div>
                         </div>
                         <div class="card-body">
-                            <form class="form form-vertical" method="post" action="{{ route('users.update', $user->id) }}" enctype="multipart/form-data">
+                            <form class="form form-vertical" method="post"
+                                  action="{{ route('categories.update', $category->id) }}" enctype="multipart/form-data">
                                 @csrf
                                 @method('put')
-                                @include('users.form')
+                                @include('dashboard.categories.form')
                             </form>
                         </div>
                     </div>

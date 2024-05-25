@@ -27,11 +27,12 @@ class StoreUserRequest extends FormRequest
         return [
             'name'                  => 'required|string|min:2|max:255',
             'email'                 => ['email', 'max:255', Rule::unique('users')->ignore($this->user)],
-            'mobile_number'         => ['nullable', 'required', 'string', 'min:9', 'max:14', Rule::unique('users')->ignore($this->user)],
+            'mobile_number'         => ['nullable', 'string', 'min:9', 'max:14', Rule::unique('users')->ignore($this->user)],
             'gender'                => ['nullable', Rule::in(['male', 'female'])],
             'password'              => ['required', Password::min(8), 'max:20', 'confirmed'],
             'password_confirmation' => ['required', 'same:password'],
             'image'                 => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'role'                  => ['nullable', Rule::in(['user', 'administrator'])],
             'status'                => ['nullable', Rule::in(['available', 'unavailable'])],
         ];
     }

@@ -100,6 +100,26 @@
     @endif
 
     <div class="row">
+        <div class="col-md-6 col-12">
+            <div class="form-group">
+                <label for="first-name-column">Role Name</label>
+                <fieldset id="role" class="form-group">
+                    <select name="role" class="form-control @error('role') is-invalid @enderror">
+                        <option value="user" @if ($user->role == 'user' or old('role') == 'user') selected @endif>
+                            user
+                        </option>
+                        <option value="administrator" @if ($user->role == 'administrator' or old('role') == 'administrator') selected @endif>
+                            administrator
+                        </option>
+                    </select>
+                </fieldset>
+            </div>
+            @error('role')
+            <p class="invalid-feedback">{{ $message }}
+            </p>
+            @enderror
+        </div>
+
         <div class="col-lg-6 col-md-12">
             <fieldset class="form-group">
                 <label for="image">Upload Image</label>

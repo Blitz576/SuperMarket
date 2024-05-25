@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('dashboard.layouts.layout')
 @section('page_title', 'Create User')
 @section('content')
     <div class="breadcrumbs">
@@ -15,7 +15,7 @@
                     <ol class="breadcrumb text-right">
                         <li><a href="#">Dashboard</a></li>
                         <li><a href="{{ route('users.index') }}">Users</a></li>
-                        <li class="active">Add new user</li>
+                        <li class="active">Edit user</li>
                     </ol>
                 </div>
             </div>
@@ -29,15 +29,16 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="row justify-content-between align-items-center">
-                                <strong class="col text-primary">Add new user</strong>
+                                <strong class="col text-primary">Edit User " {{ $user->name }} "</strong>
                                 <a href="{{ route('users.index') }}" class="col-2 me-2 btn btn-outline-warning rounded">Back</a>
                             </div>
                         </div>
                         <div class="card-body">
                             <form class="form form-vertical" method="post"
-                                  action="{{ route('users.store') }}" enctype="multipart/form-data">
+                                  action="{{ route('users.update', $user->id) }}" enctype="multipart/form-data">
                                 @csrf
-                                @include('users.form')
+                                @method('put')
+                                @include('dashboard.users.form')
                             </form>
                         </div>
                     </div>
