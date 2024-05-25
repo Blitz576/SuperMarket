@@ -55,10 +55,29 @@
                                     <a href="#"> <i class="fa fa-list mx-2"></i>Count Of Products Belong To This Category: {{ $category->products->count() }}</a>
                                 </li>
                             </ul>
-
                         </section>
                     </aside>
                 </div>
+            </div>
+            
+            <div class="row justify-content-center align-items-between">
+                <div class="col-md-12 mt-2 mb-5 text-center">
+                    <h3>Products In This Category</h3>
+                </div>
+                @forelse($category->products as $product)
+                    <div class="col-md-3">
+                        <div class="card"> {{--$product->images()->first()->image --}}
+                            <img class="card-img-top" src="https://cdn.vectorstock.com/i/500p/65/30/default-image-icon-missing-picture-page-vector-40546530.jpg" alt="Product Image">
+                            <div class="card-body">
+                                <h4 class="card-title mb-3">{{ $product->title }}</h4>
+                                <p class="card-text"><strong>Stock: </strong>{{ $product->stock }}</p>
+                                <p class="card-text"><strong>Price: </strong>{{ $product->price }} $</p>
+                            </div>
+                        </div>
+                    </div>
+                @empty
+                    h1
+                @endforelse
             </div>
         </div>
     </div>
