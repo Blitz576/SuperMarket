@@ -28,4 +28,6 @@ Route::resource('users', UserController::class);
 Route::post('users/{user}/change-status', [UserController::class, 'changeStatus']);
 
 Route::resource('categories', CategoryController::class);
+Route::post('categories/{category}/change-status', [CategoryController::class, 'changeStatus']);
+
 Route::resource('/products',ProductController::class);
