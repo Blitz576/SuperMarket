@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->enum('status', ['available', 'unavailable'])->default('available');
             $table->text('cover_image');
             $table->timestamps();
