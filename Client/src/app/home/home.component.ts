@@ -1,21 +1,15 @@
-import { Component, NgModule } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { NavElementComponent } from './base/nav-element/nav-element.component';
-import { HeroComponent } from './home/hero/hero.component';
-import { PopularComponent } from './home/popular/popular.component';
-import { HomeComponent } from "./home/home.component";
-
-
+import { Component } from "@angular/core";
+import { HeroComponent } from "./hero/hero.component";
+import { PopularComponent } from "./popular/popular.component";
 @Component({
-    selector: 'app-root',
-    standalone: true,
-    templateUrl: './app.component.html',
-    styleUrl: './app.component.css',
-    imports: [RouterOutlet, NavElementComponent, HomeComponent]
+  selector: 'app-home',
+  standalone:true,
+  imports:[HeroComponent,PopularComponent],
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
 })
-export class AppComponent {
-  title = 'fe';
-  products = [
+export class HomeComponent {
+    products = [
     {
       imageUrl: 'https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/4.webp',
       name: 'HP Notebook',
@@ -44,4 +38,4 @@ export class AppComponent {
       rating: 5
     }
   ];
-}
+ }
