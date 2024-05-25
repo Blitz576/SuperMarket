@@ -12,17 +12,23 @@ import { FormsModule } from '@angular/forms';
 export class HeroComponent {
   slides = [
     {
-      imageUrl: 'https://img.freepik.com/free-psd/black-friday-super-sale-facebook-cover-template_106176-1539.jpg',
+      Quote:"Explore Our Best Products",
+      captionStyle:"carousel-caption-1",
+      imageUrl: 'https://theme905-computer-shop.myshopify.com/cdn/shop/files/img_01_02109cc1-220a-4319-ab36-d43b5340f37a_1296x.png?v=1665429191',
       productName: 'First slide label',
       description: 'Some representative placeholder content for the first slide.'
     },
     {
-      imageUrl: 'https://img.freepik.com/free-psd/black-friday-super-sale-facebook-cover-template_106176-1539.jpg',
+      Quote:"We Are The Best",
+      captionStyle:"carousel-caption",
+      imageUrl: 'https://theme905-computer-shop.myshopify.com/cdn/shop/files/img_01_02109cc1-220a-4319-ab36-d43b5340f37a_1296x.png?v=1665429191',
       productName: 'Second slide label',
       description: 'Some representative placeholder content for the second slide.'
     },
     {
-      imageUrl: 'https://img.freepik.com/free-psd/black-friday-super-sale-facebook-cover-template_106176-1539.jpg',
+      Quote:"Mohamed Ismail Elsayed Harby",
+      captionStyle:"carousel-caption",
+      imageUrl: 'https://scontent.fcai19-3.fna.fbcdn.net/v/t39.30808-6/335299117_159878670216978_3831529047356252070_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=5f2048&_nc_ohc=fhMcRbDNEtIQ7kNvgENFdAa&_nc_ht=scontent.fcai19-3.fna&oh=00_AYCItkM_51z9_q9lpryhO6DlLtYPctgmP3MYaCfnsqCUMQ&oe=66581D8B',
       productName: 'Third slide label',
       description: 'Some representative placeholder content for the third slide.'
     }
