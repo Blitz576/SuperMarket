@@ -46,9 +46,39 @@
                                     <tbody>
                                         @foreach ($orders as $order)
                                             <tr>
-                                                <td data-toggle="collapse" data-target="#collapse{{ $order->id }}" aria-expanded="false" aria-controls="collapse{{ $order->id }}"><i class="fa fa-plus"></i></td>
+                                                <td data-toggle="collapse" data-target="#collapse{{ $order->id }}"
+                                                    aria-expanded="false" aria-controls="collapse{{ $order->id }}"><i
+                                                        class="fa fa-plus"></i></td>
                                                 <td class="text-success fw-bold">{{ $order->user->name }}</td>
-                                                <td class="text-success fw-bold">{{ $order->status }}</td>
+                                                <td class="text-success fw-bold">
+                                                    <select class="order-status form-control col-auto"
+                                                        data-order-id="{{ $order->id }}">
+                                                        <option value="pending"
+                                                            {{ $order->status === 'pending' ? 'selected' : '' }}>Pending
+                                                        </option>
+                                                        <option value="paid"
+                                                            {{ $order->status === 'paid' ? 'selected' : '' }}>paid</option>
+                                                        <option value="processing"
+                                                            {{ $order->status === 'processing' ? 'selected' : '' }}>
+                                                            processing</option>
+                                                        <option value="shipped"
+                                                            {{ $order->status === 'shipped' ? 'selected' : '' }}>shipped
+                                                        </option>
+                                                        <option value="completed"
+                                                            {{ $order->status === 'completed' ? 'selected' : '' }}>completed
+                                                        </option>
+                                                        <option value="cancelled"
+                                                            {{ $order->status === 'cancelled' ? 'selected' : '' }}>
+                                                            cancelled</option>
+                                                        <option value="rejected"
+                                                            {{ $order->status === 'rejected' ? 'selected' : '' }}>rejected
+                                                        </option>
+                                                        <option value="refunded"
+                                                            {{ $order->status === 'refunded' ? 'selected' : '' }}>refunded
+                                                        </option>
+
+                                                    </select>
+                                                </td>
                                                 <td class="text-success fw-bold">{{ $order->notes }}</td>
                                                 <td class="text-success fw-bold">{{ $order->total_price }}</td>
                                                 <td>
@@ -74,9 +104,12 @@
                                                         <tbody>
                                                             @foreach ($order->orderItems as $item)
                                                                 <tr>
-                                                                    <td class="text-success fw-bold">{{ $item->product->title }}</td>
-                                                                    <td class="text-success fw-bold">{{ $item->quantity }}</td>
-                                                                    <td class="text-success fw-bold">{{ $item->price }}</td>
+                                                                    <td class="text-success fw-bold">
+                                                                        {{ $item->product->title }}</td>
+                                                                    <td class="text-success fw-bold">{{ $item->quantity }}
+                                                                    </td>
+                                                                    <td class="text-success fw-bold">{{ $item->price }}
+                                                                    </td>
                                                                 </tr>
                                                             @endforeach
                                                         </tbody>
@@ -93,4 +126,37 @@
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function() {
+            $('.order-status').on('change', function() {
+                const orderId = $(this).data('order-id');
+                const newStatus = $(this).val();
+                const csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+                console.log("Sending request with:", {
+                    orderId: orderId,
+                    status: newStatus,
+                    _token: csrfToken
+                });
+
+                $.ajax({
+                    url: "/orders/" + orderId + "/change-status",
+                    type: "POST",
+                    data: {
+                        status: newStatus,
+                        _token: csrfToken
+                    },
+                    success: function(response) {
+                        toastr.success(response.message);
+                        console.log("Success response:", response);
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.error("Error updating status:", textStatus, errorThrown);
+                        toastr.error("Failed to update status.");
+                        console.log("Error response:", jqXHR.responseText);
+                    }
+                });
+            });
+        });
+    </script>
 @endsection
