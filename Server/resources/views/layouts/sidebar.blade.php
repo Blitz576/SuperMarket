@@ -48,6 +48,12 @@
                         <li><i class="menu-icon fa fa-plus"></i><a href="{{ route('users.create') }}">Add New User</a></li>
                     </ul>
                 </li>
+                <li class="menu-item-has-children dropdown {{ Request::is('*orders*') ? 'show' : '' }}">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="{{ Request::is('*orders*') ? 'true' : 'false' }}"> <i class="menu-icon fa fa-tasks"></i>Orders</a>
+                    <ul class="sub-menu children dropdown-menu {{ Request::is('*orders*') ? 'show' : '' }}">
+                        <li><i class="menu-icon fa fa-tasks"></i><a href="{{ route('orders.index') }}">List Orders</a></li>
+                    </ul>
+                </li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </nav>

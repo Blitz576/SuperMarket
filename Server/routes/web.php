@@ -3,6 +3,7 @@
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\SettingController;
 use App\Http\Controllers\Dashboard\UserController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 
@@ -29,3 +30,5 @@ Route::post('users/{user}/change-status', [UserController::class, 'changeStatus'
 
 Route::resource('categories', CategoryController::class);
 Route::resource('/products',ProductController::class);
+
+Route::resource('orders',OrderController::class);
