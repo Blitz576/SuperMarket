@@ -2,10 +2,11 @@
            @extends('dashboard.layouts.authLayout')
            @section('form')
            <div class="login-form">
-                    <form>
+                    <form method="POST" action="{{ route('register.post') }}">
+                        @csrf
                         <div class="form-group">
                             <label>User Name</label>
-                            <input type="email" class="form-control" placeholder="User Name" name="name">
+                            <input type="text" class="form-control" placeholder="User Name" name="name">
                         </div>
                             <div class="form-group">
                                 <label>Email address</label>
@@ -13,7 +14,11 @@
                         </div>
                                 <div class="form-group">
                                     <label>Password</label>
-                                    <input type="password" class="form-control" placeholder="Password" name="phone">
+                                    <input type="password" class="form-control" placeholder="Password" name="password">
+                        </div>
+                        <div class="form-group">
+                            <label>Phone</label>
+                            <input type="text" class="form-control" placeholder="Phone" name="mobile_number">
                         </div>
                         <div class="form-group">
                             <label>Gender</label>

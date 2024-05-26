@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboard\AuthController;
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\SettingController;
 use App\Http\Controllers\Dashboard\UserController;
@@ -23,12 +24,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('register',function(){
-    return view('authentication.register');
-});
+Route::get('register',[AuthController::class,'register']);
+Route::post('register',[AuthController::class,'registerPost'])->name('register.post');
 Route::get('login',function(){
     return view('authentication.login');
-});
+})->name('login');
 
 
 Route::get('settings', [SettingController::class, 'edit'])->name('settings.edit');
