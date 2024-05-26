@@ -3,6 +3,7 @@ import { AuthComponent } from './auth/auth.component';
 import { ForgetPasswordComponent } from './auth/forget-password/forget-password.component';
 import { CartComponent } from './cart/cart.component';
 import { HomeComponent } from './home/home.component';
+import { authenticationLoginGuard } from './guard/authentication-login.guard';
 
 export const routes: Routes = [
   {
@@ -16,5 +17,5 @@ export const routes: Routes = [
       { path: "forget-password", component: ForgetPasswordComponent },
     ]
   },
-  { path: "cart", component: CartComponent }
+  { path: "cart", component: CartComponent ,canActivate:[authenticationLoginGuard] }
 ];

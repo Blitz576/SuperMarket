@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LocalStorageService } from '../service/localstorage.service';
 
 @Component({
   selector: 'app-cart',
@@ -9,8 +10,8 @@ import { Router } from '@angular/router';
   styleUrl: './cart.component.css'
 })
 export class CartComponent {
-  constructor(private router:Router){}
-
+  constructor(private router:Router, private localStorage:LocalStorageService){}
+  
   goHome(){
     this.router.navigate(['/home']);
   }
