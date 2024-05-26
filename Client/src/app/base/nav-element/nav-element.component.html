@@ -7,13 +7,21 @@
   <a href="#">Services</a>
   <a href="#">Clients</a>
   <a href="#">Contact</a>
+  @if(!isLoggedIn){
+  <a class="change-pointer" routerLink="/auth"
+    ><i class="bi bi-box-arrow-right"></i> Login/Register</a
+  >
+  } @else if(isLoggedIn) {
+  <a class="change-pointer" (click)="logout()"
+    ><i class="bi bi-box-arrow-left"></i> Logout</a
+  >
+  }
 </div>
 
 <nav
   class="navbar navbar-expand-lg bg-body-tertiary border border-dark border-bottom"
 >
   <div class="container-fluid">
-    <!-- Burger menu and side nav -->
     <span (click)="openNav($event)" style="display: inline" class="openbtn"
       ><i class="bi bi-list"></i>
     </span>

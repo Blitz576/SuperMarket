@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('slug');
             $table->enum('rating',['1','2','3','4','5']);
             $table->enum('status', ['available', 'unavailable'])->default('available');
-            $table->unsignedBigInteger('category');
+            $table->unsignedBigInteger('category_id');
             $table->enum('show_in_slider',['show','hide'])->default('hide');
             $table->timestamps();
 

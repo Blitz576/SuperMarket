@@ -1,1 +1,22 @@
-<p>hero works!</p>
+<div class="container p-2 mt-3">
+  <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button *ngFor="let slide of slides; let i = index"
+      type="button" [attr.data-bs-target]="'#carouselExampleCaptions'"
+      [attr.data-bs-slide-to]="i"
+      [class.active]="i === 0"
+      [attr.aria-label]="'Slide ' + (i + 1)"></button>
+    </div>
+    <div class="carousel-inner">
+      <div *ngFor="let slide of slides; let i = index" class="carousel-item" [class.active]="i === 0">
+        <img [src]="slide.imageUrl" class="d-block w-100" alt="...">
+        <div [class]="slide.captionStyle">
+          <h4>{{slide.Quote}}</h4>
+          <h5>{{ slide.productName }}</h5>
+          <p>{{ slide.description }}</p>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>

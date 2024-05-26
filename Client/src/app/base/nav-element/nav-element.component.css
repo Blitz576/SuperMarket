@@ -85,3 +85,7 @@
   background-color: #a51212;
   color: #dfdddd;
 }
+
+.change-pointer:hover{
+  cursor: pointer;
+}
