@@ -7,18 +7,30 @@
                         <div class="form-group">
                             <label>User Name</label>
                             <input type="text" class="form-control" placeholder="User Name" name="name">
+                            @error('name')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                         </div>
                             <div class="form-group">
                                 <label>Email address</label>
                                 <input type="email" class="form-control" placeholder="Email" name=email>
-                        </div>
+                                @error('email')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                            </div>
                                 <div class="form-group">
                                     <label>Password</label>
                                     <input type="password" class="form-control" placeholder="Password" name="password">
-                        </div>
+                                    @error('password')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                                </div>
                         <div class="form-group">
                             <label>Phone</label>
                             <input type="text" class="form-control" placeholder="Phone" name="mobile_number">
+                            @error('mobile_number')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                         </div>
                         <div class="form-group">
                             <label>Gender</label>
@@ -30,6 +42,9 @@
                                     <input type="radio" name="gender" value="female"> Female
                                 </label>
                             </div>
+                            @error('gender')
+                    <span class="text-danger">{{ $message }}</span>
+                @enderror
                         </div>
                                     <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Register</button>
                                  

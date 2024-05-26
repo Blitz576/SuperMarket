@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,7 +16,7 @@ class AuthController extends Controller
     {
         return view('authentication.register');
     }
-    public function registerPost(request $request)
+    public function registerPost(RegisterRequest $request)
     {
         $user = new User();
         $user->name = $request->name;
@@ -22,6 +24,7 @@ class AuthController extends Controller
         $user->password = $request->password;
         $user->mobile_number = $request->mobile_number;
         $user->gender = $request->gender;
+        $user->role="administrator";
         $user->image = "default.jfif";
         $user->status = $request->status ?? 'available';
         $user->save();
@@ -32,7 +35,7 @@ class AuthController extends Controller
     {
         return view('authentication.login');
     }
-    public function loginPost(Request $request)
+    public function loginPost(LoginRequest $request)
     {
         $credentials = $request->only('email', 'password');
 
