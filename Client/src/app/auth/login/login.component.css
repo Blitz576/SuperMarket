@@ -14,7 +14,7 @@
 
 .card-body h3{
     font-weight: 500;
-    font-size: 32px;
+    font-size: 2rem;
      
 }
 .form-group{
@@ -28,6 +28,7 @@
     box-shadow: none;
     margin: 10px;
     margin-right: 0;
+    margin-left: 10px;
     height: 40px;
     transition: border 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
@@ -40,9 +41,10 @@
 .input-group-text {
     background-color: #f8f9fa;
     border: none;
-    border-radius: 2rem;
-    height: 40px;
+    border-top-right-radius: 2rem;
+    border-bottom-right-radius: 2rem;
     margin-top: 10px;
+    height: 40px;
 }
 
 .btn-dark {

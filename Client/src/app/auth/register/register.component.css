@@ -40,7 +40,8 @@
 .input-group-text {
     background-color: #f8f9fa;
     border: none;
-    border-radius: 2rem;
+    border-top-right-radius: 2rem;
+    border-bottom-right-radius: 2rem;
     height: 40px;
     margin-top: 10px;
 }

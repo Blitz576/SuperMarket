@@ -12,6 +12,8 @@ import { LocalStorageService } from '../../service/localstorage.service';
 export class LoginComponent {
   user_mail:string="";
   passowrd:string="";
+  passwordIcon: string = 'fas fa-eye-slash';
+  passwordFieldType: string = 'password';
   
   constructor(private localStorage:LocalStorageService,private router:Router){} 
   
@@ -20,4 +22,14 @@ export class LoginComponent {
     this.localStorage.setValue('password',this.passowrd);
     this.router.navigate(['/home']);
    }
+
+   togglePasswordVisibility() {
+    if (this.passwordFieldType === 'password') {
+      this.passwordFieldType = 'text';
+      this.passwordIcon = 'fa-solid fa-eye'; // Updated icon class for Bootstrap Icons
+    } else {
+      this.passwordFieldType = 'password';
+      this.passwordIcon = 'fas fa-eye-slash'; // Reverting back to FontAwesome icon
+    }
+  }
 }

@@ -12,6 +12,9 @@ import { LocalStorageService } from '../service/localstorage.service';
 export class CartComponent {
   constructor(private router:Router, private localStorage:LocalStorageService){}
   
+  
+
+
   goHome(){
     this.router.navigate(['/home']);
   }
