@@ -4,7 +4,7 @@
     margin-top: 12vmax;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     font-family: "Work Sans",sans-serif;
 }
@@ -12,6 +12,7 @@
 .not-found p{
     font-size: 2rem;
     font-weight: 500;
+    line-height: 38px;
 }
 
 .not-found .btn-dark {
@@ -20,6 +21,7 @@
     height: 50px;
     font-weight: 500;
     transition: all 0.3s ease;
+    font-size: 0.9rem;
 }
 
 .not-found .btn-dark:hover {
