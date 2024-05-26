@@ -1,3 +1,4 @@
+<!-- side navbar -->
 <div [class.open]="isOpen" id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" (click)="closeNav($event)"
     >&times;</a
@@ -8,15 +9,15 @@
   <a href="#">Contact</a>
 </div>
 
-<!-- Add all page content inside this div if you want the side nav to push page content to the right -->
-<!-- <div id="main">...</div> -->
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav
+  class="navbar navbar-expand-lg bg-body-tertiary border border-dark border-bottom"
+>
   <div class="container-fluid">
     <!-- Burger menu and side nav -->
     <span (click)="openNav($event)" style="display: inline" class="openbtn"
-      >&#9776;</span
-    >
-    <a class="navbar-brand mr-auto" href="#">Navbar</a>
+      ><i class="bi bi-list"></i>
+    </span>
+    <a class="navbar-brand mr-auto mx-3" href="#">Navbar</a>
     <!-- toggler for responsive screens  -->
     <button
       class="navbar-toggler"
@@ -40,39 +41,31 @@
         <li class="nav-item">
           <a class="nav-link" href="#">Link</a>
         </li>
-        <li class="nav-item">
-          <form class="d-flex" role="search">
+        <li class="nav-item mx-5">
+          <div class="input-group rounded-pill">
+            <span
+              class="input-group-text rounded-end"
+              style="border-radius: 25px"
+            >
+              <i class="bi bi-search"></i>
+            </span>
             <input
-              class="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
+              type="text"
+              placeholder="Search for a product!"
+              aria-label="Input group example"
+              aria-describedby="basic-addon1"
+              class="form-control rounded-start"
+              style="border-radius: 25px"
             />
-            <button class="btn btn-outline-success" type="submit">
-              Search
-            </button>
-          </form>
+          </div>
         </li>
-        <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Dropdown
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
 
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider" /></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
+        <li class="nav-item mx-2">
+          <a class="nav-link"> <i class="bi bi-basket mx-1"></i> Cart</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+
+        <li class="nav-item mx-2">
+          <a class="nav-link"> <i class="bi bi-bag-heart"></i> Wishlist</a>
         </li>
       </ul>
     </div>

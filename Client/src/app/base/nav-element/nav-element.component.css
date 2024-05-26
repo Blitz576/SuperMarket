@@ -6,10 +6,10 @@
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: #111; /* Dark background */
-  overflow-x: hidden; /* Disable horizontal scroll */
-  transition: 0.5s; /* Smooth transition effect */
-  padding-top: 60px; /* Add padding at the top */
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
 }
 
 /* Style the sidenav links */
@@ -52,18 +52,36 @@
   margin-left: 250px;
 }
 
-/* Style the open button */
 .openbtn {
-  font-size: 30px; /* Font size for the open button */
-  cursor: pointer; /* Change cursor to pointer */
-  background-color: #dfdddd; /* Match sidenav background */
-  color: rgb(65, 65, 65); /* White text color */
-  border: none; /* Remove border */
-  padding: 10px 15px; /* Padding for the button */
-  text-align: center; /* Center text */
+  font-size: 40px;
+  font-weight: bolder;
+  cursor: pointer;
+  color: rgb(14, 13, 13);
+  border: none;
+  text-align: center;
 }
 
-.openbtn :hover {
-  background-color: #a51212; /* Darker background on hover */
+.openbtn :hover * {
+  color: #414040;
+}
+
+.nav-item * {
+  color: #111;
+  transition: background-color 0.3s, color 0.3s;
+  border-radius: 5px;
+  border-bottom: 1 px solid #dfdddd;
+}
+
+.nav-item:hover * {
+  color: #818181;
+  border-bottom: 0px solid #141414;
+}
+.nav-item:hover {
+  color: #818181;
+  border-bottom: 1px solid #141414;
+}
+
+.nav-item-active {
+  background-color: #a51212;
   color: #dfdddd;
 }
