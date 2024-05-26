@@ -1,20 +1,64 @@
-<app-hero></app-hero> 
-<section class="mt-3" style="background-color: #eee;">
+<app-hero></app-hero>
+<!-- Popular goes here -->
+<br />
+<br />
+<app-categories></app-categories>
+<br />
+<br />
+<!-- End of popular -->
+<!-- Title section -->
+<div class="row py-5">
+  <h2 class="h2 text-center fw-bolder">Poplar products</h2>
+  <hr class="w-25 border-2 mx-auto border-dark border rounded-circle" />
+</div>
+<!-- end of title section -->
+<!-- Start of popular products section  -->
+<section class="mt-3" style="background-color: #eee">
   <div class="container py-5">
     <div class="row">
       @for (product of products; track $index) {
-        <div class="col-md-4 mb-4">
-          <app-popular
-            [imageUrl]="product.imageUrl"
-            [name]="product.name"
-            [price]="product.price"
-            [originalPrice]="product.originalPrice"
-            [category]="product.category"
-            [stock]="product.stock"
-            [rating]="product.rating">
-          </app-popular>
-        </div>
+      <div class="col-md-4 mb-4">
+        <app-popular
+          [imageUrl]="product.imageUrl"
+          [name]="product.name"
+          [price]="product.price"
+          [originalPrice]="product.originalPrice"
+          [category]="product.category"
+          [stock]="product.stock"
+          [rating]="product.rating"
+        >
+        </app-popular>
+      </div>
       }
+    </div>
+  </div>
+</section>
+<!-- End of popular products section  -->
+<!-- Title section -->
+<div class="row py-5">
+  <h2 class="h2 text-center fw-bolder">Phone of the year</h2>
+  <hr class="w-25 border-2 mx-auto border-dark border rounded-circle" />
+</div>
+<!-- end of title section -->
+<!-- Static iphone img -->
+<section class="mt-3" style="background-color: #eee">
+  <div class="container py-5">
+    <div class="row">
+      <div class="col">
+        <h3 class="h3 fw-bold">Iphone 13 PRO MAX</h3>
+        Welcome the latest and greatest Iphone ever built. With A13 chip, 12MP
+        camera, and all-day battery life, the Iphone 13 is the perfect choice
+        for those who want the best in technology.
+
+        <dark-base-button> </dark-base-button>
+      </div>
+      <div class="col">
+        <img
+          src="../../assets/iphone.png"
+          alt=""
+          class="d-inline-block w-100"
+        />
+      </div>
     </div>
   </div>
 </section>
