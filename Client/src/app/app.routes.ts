@@ -6,6 +6,10 @@ import { HomeComponent } from './home/home.component';
 import { authenticationLoginGuard } from './guard/authentication-login.guard';
 
 export const routes: Routes = [
+
+
+  //Add  ,canActivate:[authenticationLoginGuard] To Your Critial Route For Authentication
+
   {
     path: "", redirectTo: "/home", pathMatch: "full"
   },
