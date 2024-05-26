@@ -1,20 +1,22 @@
-import { Component, NgModule } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { NavElementComponent } from './base/nav-element/nav-element.component';
-import { HeroComponent } from './home/hero/hero.component';
-import { PopularComponent } from './home/popular/popular.component';
-import { HomeComponent } from './home/home.component';
-import { FooterComponent } from './base/footer/footer.component';
+import { Component } from '@angular/core';
+import { HeroComponent } from './hero/hero.component';
+import { PopularComponent } from './popular/popular.component';
+import { CategoriesComponent } from './categories/categories.component';
+import { DarkBaseButtonComponent } from '../base/dark-base-button/dark-base-button.component';
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-home',
   standalone: true,
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
-  imports: [RouterOutlet, NavElementComponent, HomeComponent, FooterComponent],
+  imports: [
+    HeroComponent,
+    PopularComponent,
+    CategoriesComponent,
+    DarkBaseButtonComponent,
+  ],
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css'],
 })
-export class AppComponent {
-  title = 'fe';
+export class HomeComponent {
   products = [
     {
       imageUrl:

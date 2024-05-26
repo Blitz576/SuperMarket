@@ -1,0 +1,13 @@
+<a
+  *ngIf="link; else buttonTemplate"
+  [href]="link"
+  [ngClass]="buttonClasses"
+  [ngStyle]="buttonStyles"
+>
+  {{ buttonText }}
+</a>
+<ng-template #buttonTemplate>
+  <button [ngClass]="buttonClasses" [ngStyle]="buttonStyles">
+    {{ buttonText }}
+  </button>
+</ng-template>

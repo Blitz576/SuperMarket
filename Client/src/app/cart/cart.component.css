@@ -1,0 +1,30 @@
+.not-found{
+    width: 100vw;
+    height:30vh;
+    margin-top: 12vmax;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    font-family: "Work Sans",sans-serif;
+}
+
+.not-found p{
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 38px;
+}
+
+.not-found .btn-dark {
+    background-color: #ffff;
+    color:black;
+    height: 50px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.not-found .btn-dark:hover {
+    background-color:black;
+    color:white;
+}
