@@ -18,7 +18,7 @@ class AuthController extends Controller
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = Hash::make($request->password);
+        $user->password = $request->password;
         $user->mobile_number = $request->mobile_number;
         $user->gender = $request->gender;
         $user->image = 'default.jfif';
