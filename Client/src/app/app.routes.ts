@@ -5,6 +5,7 @@ import { CartComponent } from './cart/cart.component';
 import { HomeComponent } from './home/home.component';
 import { authenticationLoginGuard } from './guard/authentication-login.guard';
 import { WatchListComponent } from './watch-list/watch-list.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 export const routes: Routes = [
 
@@ -24,4 +25,5 @@ export const routes: Routes = [
   },
   { path: "cart", component: CartComponent ,canActivate:[authenticationLoginGuard] },
   { path: "watch-list", component:WatchListComponent ,canActivate:[authenticationLoginGuard] }
+  ,{path:"**",component:NotFoundComponent}
 ];
