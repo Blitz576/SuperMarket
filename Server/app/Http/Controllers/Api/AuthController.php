@@ -34,15 +34,17 @@ class AuthController extends Controller
 
     public function login(LoginRequest $request)
     {
-        $user = User::where('email', $request->email)->first();
+        $credentials = $request->only('email', 'password');
 
-        if (!$user || !Hash::check($request->password, $user->password)) {
+        if (!Auth::attempt($credentials)) {
             throw ValidationException::withMessages([
                 'email' => ['The provided credentials are incorrect.'],
             ]);
         }
 
-        $token = $user->createToken($request->device_name)->plainTextToken;
+        $user = $request->user();
+        $token = $user->createToken('API Token')->plainTextToken;
+
         return response()->json([
             'access_token' => $token,
             'token_type' => 'Bearer',
