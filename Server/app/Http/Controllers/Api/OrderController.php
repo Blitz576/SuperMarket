@@ -7,6 +7,7 @@ use App\Http\Requests\OrderStoreRequest;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -43,19 +44,10 @@ class OrderController extends Controller
 
         return response()->json(['message' => 'order send successfully'], 200);
     }
-    public function show($id)
+    public function show()
     {
-        $order = Order::find($id);
-
-        if (!$order) {
-            return response()->json(['message' => 'Order not found'], 404);
-        }
-
-        $orderItems = $order->orderItems()->get();
-
-        return response()->json([
-            'order' => $order,
-            'order_items' => $orderItems
-        ], 200);
+        $user = Auth::user();
+        $orders = Order::where('user_id', $user->id)->with('orderItems')->get();
+        return response()->json($orders);
     }
 }
