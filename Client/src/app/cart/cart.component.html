@@ -1,4 +1,4 @@
-@if(false){
+@if(cartItems.length==0){
 <section class="not-found">
 <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 	<path d="M7 8V6C7 4.67392 7.52678 3.40215 8.46447 2.46447C9.40215 1.52678 10.6739 1 12 1C13.3261 1 14.5979 1.52678 15.5355 2.46447C16.4732 3.40215 17 4.67392 17 6V8H20C20.2652 8 20.5196 8.10536 20.7071 8.29289C20.8946 8.48043 21 8.73478 21 9V21C21 21.2652 20.8946 21.5196 20.7071 21.7071C20.5196 21.8946 20.2652 22 20 22H4C3.73478 22 3.48043 21.8946 3.29289 21.7071C3.10536 21.5196 3 21.2652 3 21V9C3 8.73478 3.10536 8.48043 3.29289 8.29289C3.48043 8.10536 3.73478 8 4 8H7ZM7 10H5V20H19V10H17V12H15V10H9V12H7V10ZM9 8H15V6C15 5.20435 14.6839 4.44129 14.1213 3.87868C13.5587 3.31607 12.7956 3 12 3C11.2044 3 10.4413 3.31607 9.87868 3.87868C9.31607 4.44129 9 5.20435 9 6V8Z" fill="#BEC0C4"></path>
@@ -15,16 +15,42 @@
 	<table class="table cart-table">
 		<thead>
 		   <tr>
-			<th>product</th>
-			<th>price</th>
-			<th>quantity</th>
-			<th>total</th>
+			<th >Product</th>
+			<th>Price</th>
+			<th>Quantity</th>
+			<th>Total</th>
 			<th></th>
 		  </tr>
 		</thead>
-		
 		<tbody>
+		<tr *ngFor="let cartItem of cartItems">
+            <td >
+				<div class="d-flex align-items-center ">
+				<img [src]="cartItem.image" class="cart-table-image mx-3" [alt]="cartItem.name">
+				<p class="cart-item-name mx-2">{{cartItem.name}}</p>
+				</div>
+			</td>
+			<td class="cart-table-item-price">
+				${{cartItem.price}}
+			</td>
+			<td class="">
+			<div class="input-group cart-table-item-quantity">
+				<span class="input-group-text" (click)="increase(cartItem.id)" id="button-plus">+</span>
+				<input type="text" [(ngModel)]="cartItem.quantity" readonly id="counter" name="counter">
+				<span class="input-group-text" (click)="decrease(cartItem.id)" id="button-minus">-</span>
+			</div>
+			</td>
+			<td class="cart-table-item-total ">
+				${{cartItem.total_price}}
+			</td>
+			<td class="other">
+			<button style="background-color:white;border:none;outline:none" (click)="removeItem(cartItem.id)">	
+			  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M17 6H22V8H20V21C20 21.2652 19.8946 21.5196 19.7071 21.7071C19.5196 21.8946 19.2652 22 19 22H5C4.73478 22 4.48043 21.8946 4.29289 21.7071C4.10536 21.5196 4 21.2652 4 21V8H2V6H7V3C7 2.73478 7.10536 2.48043 7.29289 2.29289C7.48043 2.10536 7.73478 2 8 2H16C16.2652 2 16.5196 2.10536 16.7071 2.29289C16.8946 2.48043 17 2.73478 17 3V6ZM18 8H6V20H18V8ZM9 4V6H15V4H9Z" fill="#121212"></path>
+				</svg>
+			</button>
+			</td>
+		</tr>
 		</tbody>
-
 	</table>
 }
