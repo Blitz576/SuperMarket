@@ -43,5 +43,19 @@ class OrderController extends Controller
 
         return response()->json(['message' => 'order send successfully'], 200);
     }
-    
+    public function show($id)
+    {
+        $order = Order::find($id);
+
+        if (!$order) {
+            return response()->json(['message' => 'Order not found'], 404);
+        }
+
+        $orderItems = $order->orderItems()->get();
+
+        return response()->json([
+            'order' => $order,
+            'order_items' => $orderItems
+        ], 200);
+    }
 }
