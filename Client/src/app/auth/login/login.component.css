@@ -72,3 +72,22 @@
 .forget-password:hover{
     color:black
 }
+
+
+.custom-alert {
+    margin-top: 5px;  
+    margin-bottom: 5px; 
+    padding: 5px;  
+}
+
+.custom-error {
+    margin: 0;  
+    padding: 2px; 
+}
+
+.hide-error{
+    display: none;
+}
+.show-error{
+    display: block;
+}
