@@ -1,25 +1,57 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [],
+  imports: [FormsModule, CommonModule],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.css'
+  styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-
+  first_name: string = '';
+  last_name: string = '';
+  gender: string = '';
+  email: string = '';
+  password: string = '';
+  confirm_password: string = '';
   passwordIcon: string = 'fas fa-eye-slash';
   passwordFieldType: string = 'password';
-  
+  errorInSubmitting: string = 'hide-error';
 
   togglePasswordVisibility() {
     if (this.passwordFieldType === 'password') {
       this.passwordFieldType = 'text';
-      this.passwordIcon = 'fa-solid fa-eye'; // Updated icon class for Bootstrap Icons
+      this.passwordIcon = 'fa-solid fa-eye';
     } else {
       this.passwordFieldType = 'password';
-      this.passwordIcon = 'fas fa-eye-slash'; // Reverting back to FontAwesome icon
+      this.passwordIcon = 'fas fa-eye-slash';
+    }
+  }
+
+  register(registerForm: NgForm) {
+    if (registerForm.valid && this.password === this.confirm_password) {
+      this.submitRegister();
+    } else {
+      registerForm.form.markAllAsTouched();
+    }
+  }
+
+  submitRegister() {
+    try {
+      // Logic to handle registration
+      console.log('User Registered:', {
+        first_name: this.first_name,
+        last_name: this.last_name,
+        gender: this.gender,
+        email: this.email,
+        password: this.password,
+      });
+      this.errorInSubmitting = 'hide-error';
+      // Redirect to login or home page
+    } catch (error) {
+      this.errorInSubmitting = 'show-error';
     }
   }
 }
