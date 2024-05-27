@@ -4,6 +4,7 @@ import { ForgetPasswordComponent } from './auth/forget-password/forget-password.
 import { CartComponent } from './cart/cart.component';
 import { HomeComponent } from './home/home.component';
 import { authenticationLoginGuard } from './guard/authentication-login.guard';
+import { WatchListComponent } from './watch-list/watch-list.component';
 
 export const routes: Routes = [
 
@@ -21,5 +22,6 @@ export const routes: Routes = [
       { path: "forget-password", component: ForgetPasswordComponent },
     ]
   },
-  { path: "cart", component: CartComponent ,canActivate:[authenticationLoginGuard] }
+  { path: "cart", component: CartComponent ,canActivate:[authenticationLoginGuard] },
+  { path: "watch-list", component:WatchListComponent ,canActivate:[authenticationLoginGuard] }
 ];

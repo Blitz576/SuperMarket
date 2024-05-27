@@ -40,11 +40,11 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul
-        class="navbar-nav me-auto mb-2 mb-lg-0 w-50"
+        class="navbar-nav me-auto mb-2 mb-lg-0 w-100 d-flex justify-content-evenly"
         style="margin-left: auto"
       >
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link active" aria-current="page" href="#"><i class="bi bi-house-door mx-2"></i>Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Link</a>
@@ -67,14 +67,15 @@
             />
           </div>
         </li>
-
-        <li class="nav-item mx-2">
+        <div class="d-flex justify-content-around w-25">
+        <li class="nav-item ">
           <a class="nav-link" routerLink="/cart"> <i class="bi bi-basket mx-1"></i> Cart</a>
         </li>
 
-        <li class="nav-item mx-2">
-          <a class="nav-link"> <i class="bi bi-bag-heart"></i> Wishlist</a>
+        <li class="nav-item ">
+          <a class="nav-link" routerLink="/watch-list"> <i class="bi bi-bag-heart mx-1"></i> Wishlist</a>
         </li>
+        </div>
       </ul>
     </div>
   </div>
