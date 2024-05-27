@@ -93,3 +93,8 @@
 }
 
 
+@media (max-width: 991px) {
+   .side-elements{
+    flex-direction: column;
+   }
+}
