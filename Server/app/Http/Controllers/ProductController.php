@@ -37,15 +37,18 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request)
     {
         $product = new Product();
+        $product->user_id = $request->user_id;
         $product->title = $request->title;
+        $product->summary = $request->summary;
         $product->description = $request->description;
         $product->category_id = $request->category;
         $product->rating = $request->rate;
         $product->price = $request->price;
+        $product->sale_price = $request->sale_price;
         $product->stock = $request->stock;
         $product->slug = Str::slug($request->title);
-        if ($request->show_in_slider) {
-            $product->show_in_slider = $request->slider;
+        if ($request->show_in_homepage) {
+            $product->show_in_homepage = $request->show_in_homepage;
         }
         $product->save();
 
@@ -89,14 +92,17 @@ class ProductController extends Controller
     public function update(UpdateProductRequest $request, string $id)
     {
         $product = Product::findOrFail($id);
-
+        
+        $product->user_id = $request->input('user_id');
         $product->title = $request->input('title');
         $product->description = $request->input('description');
+        $product->summary = $request->input('summary');
         $product->category_id = $request->input('category');
         $product->rating = $request->input('rate');
         $product->price = $request->input('price');
+        $product->sale_price = $request->input('sale_price');
         $product->stock = $request->input('stock');
-        $product->show_in_slider = $request->input('slider');
+        $product->show_in_homepage = $request->input('show_in_homepage');
         $product->save();
 
         return redirect()->route('products.show', ['product' => $product->id]);

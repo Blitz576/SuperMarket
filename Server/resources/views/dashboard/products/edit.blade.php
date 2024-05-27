@@ -22,7 +22,14 @@
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
-
+                            <div class="form-group">
+                                <label for="summary" class="control-label mb-1">Summary</label>
+                                <input id="summary" name="summary" type="text" class="form-control"
+                                       value="{{ $product->summary }}">
+                                @error('summary')
+                                <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
                             <div class="form-group">
                                 <label for="description" class="control-label mb-1">Description</label>
                                 <input id="description" name="description" type="text" class="form-control"
@@ -91,15 +98,16 @@
                             </div>
 
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="slider" id="inlineRadio1"
-                                    value="show" {{ $product->show_in_slider == 'show' ? 'checked' : '' }}>
-                                <label class="form-check-label" for="inlineRadio1">Show in slider</label>
+                                <input class="form-check-input" type="radio" name="show_in_homepage" id="inlineRadio1"
+                                    value="show" {{ $product->show_in_homepage == 'show' ? 'checked' : '' }}>
+                                <label class="form-check-label" for="inlineRadio1">Show in homepage</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="slider" id="inlineRadio2"
-                                    value="hide" {{ $product->show_in_slider == 'hide' ? 'checked' : '' }}>
-                                <label class="form-check-label" for="inlineRadio2">Hide from slider</label>
+                                <input class="form-check-input" type="radio" name="show_in_homepage" id="inlineRadio2"
+                                    value="hide" {{ $product->show_in_homepage == 'hide' ? 'checked' : '' }}>
+                                <label class="form-check-label" for="inlineRadio2">Hide from homepage</label>
                             </div>
+                        </form>
                     </div>
                     <div>
                         <input id="payment-button" type="submit" class="btn btn-lg btn-info btn-block" value="Edit">

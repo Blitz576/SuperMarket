@@ -23,12 +23,14 @@ class UpdateProductRequest extends FormRequest
     {
         return [
             'title' => 'required|string|max:255',
+            'summary' => 'required|string|min:10',
             'description' => 'required|string',
             'category' => 'required|exists:categories,id',
             'rate' => 'required|numeric|min:0|max:5',
             'price' => 'required|numeric|min:0',
+            'sale_price' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
-            'slider' => 'in:show,hide',
+            'show_in_homepage' => 'in:show,hide',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 
         ];
