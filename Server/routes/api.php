@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\OrderController;
+use App\Http\Controllers\Api\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,3 +27,9 @@ Route::post('login', [AuthController::class, 'login']);
 Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 Route::post('checkout',[OrderController::class,'store'])->middleware('auth:sanctum');
 Route::get('orders',[OrderController::class,'show'])->middleware('auth:sanctum');
+
+Route::get('homepage/products',[ProductController::class,'index']);
+Route::get('products',[ProductController::class,'all_products']);
+Route::get('products/{slug}',[ProductController::class,'show']);
+
+Route::get('categories',[CategoryController::class,'index']);
