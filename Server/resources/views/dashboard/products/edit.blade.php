@@ -38,6 +38,7 @@
                             <form action="{{ route('products.update', ['product' => $product->id]) }}" method="post"
                                 novalidate="novalidate" enctype="multipart/form-data">
                                 @csrf
+                                
                                 @method('PUT')
                                 <div class="form-group">
                                     <label for="title" class="control-label mb-1">Name</label>
@@ -70,6 +71,15 @@
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
+                                @if ($product->images->count() > 0)
+                                    <div class="row">
+                                        @foreach ($product->images as $image)
+                                            <div class="mx-3">
+                                                <img src="{{ asset('images/'.$image->image) }}"  alt="{{ $product->title }}" width="100" height="100">
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                @endif
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="form-group">
@@ -113,7 +123,8 @@
                                     <div class="col-4">
                                         <div class="form-group">
                                             <label for="sale_price" class="control-label mb-1">Sale Price</label>
-                                            <input id="sale_price" name="sale_price" type="number" value="{{$product->sale_price}}" class="form-control">
+                                            <input id="sale_price" name="sale_price" type="number"
+                                                value="{{ $product->sale_price }}" class="form-control">
                                             @error('sale_price')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror
