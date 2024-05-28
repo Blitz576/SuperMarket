@@ -38,10 +38,10 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">Title</th>
+                                        <th scope="col">Image</th>
+                                        <td scope="col">Title</td>
                                         <th scope="col">Category</th>
                                         <th scope="col">Stock</th>
-                                        <th scope="col">Image</th>
                                         <th scope="col">Rating</th>
                                         <th scope="col">Status</th>
                                         <th>Actions</th>
