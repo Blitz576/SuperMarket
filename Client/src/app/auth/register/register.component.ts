@@ -16,6 +16,7 @@ export class RegisterComponent {
   email: string = '';
   password: string = '';
   confirm_password: string = '';
+
   passwordIcon: string = 'fas fa-eye-slash';
   passwordFieldType: string = 'password';
   errorInSubmitting: string = 'hide-error';
@@ -40,14 +41,7 @@ export class RegisterComponent {
 
   submitRegister() {
     try {
-      // Logic to handle registration
-      console.log('User Registered:', {
-        first_name: this.first_name,
-        last_name: this.last_name,
-        gender: this.gender,
-        email: this.email,
-        password: this.password,
-      });
+            
       this.errorInSubmitting = 'hide-error';
       // Redirect to login or home page
     } catch (error) {
