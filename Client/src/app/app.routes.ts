@@ -9,7 +9,7 @@ import { WatchListComponent } from './watch-list/watch-list.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 export const routes: Routes = [
-  //Add  ,canActivate:[authenticationLoginGuard] To Your Critial Route For Authentication
+  // Add canActivate:[authenticationLoginGuard] To Your Critical Route For Authentication
 
   {
     path: '',
@@ -28,7 +28,6 @@ export const routes: Routes = [
     canActivate: [authenticationLoginGuard],
   },
   { path: 'product/:id', component: ProductPageComponent },
-  ,
   {
     path: 'watch-list',
     component: WatchListComponent,
