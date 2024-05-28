@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductImage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
 
@@ -18,7 +19,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::with('images')->get();
         return view('dashboard.products.index', ['products' => $products]);
     }
 
@@ -34,20 +35,17 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+
     public function store(StoreProductRequest $request)
     {
-        $product = new Product();
-        $product->title = $request->title;
-        $product->description = $request->description;
-        $product->category_id = $request->category;
-        $product->rating = $request->rate;
-        $product->price = $request->price;
-        $product->stock = $request->stock;
-        $product->slug = Str::slug($request->title);
-        if ($request->show_in_slider) {
-            $product->show_in_slider = $request->slider;
-        }
-        $product->save();
+        $user = Auth::user();
+
+
+        $productData = $request->except(['images', '_token']);
+        $productData['slug'] = Str::slug($request->title);
+        $productData['user_id'] = $user->id;
+
+        $product = Product::create($productData);
 
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
@@ -60,19 +58,19 @@ class ProductController extends Controller
                 ]);
             }
         }
+
         return redirect()->route('products.index');
     }
+
 
     /**
      * Display the specified resource.
      */
     public function show(string $id)
     {
-        $product = Product::find($id);
-        $productImage = ProductImage::where('product_id', $id)->get()->first();
-        return view('dashboard.products.show', ['product' => $product, 'image' => $productImage]);
+        $product = Product::with('images')->find($id);
+        return view('dashboard.products.show', ['product' => $product]);
     }
-
     /**
      * Show the form for editing the specified resource.
      */
@@ -88,19 +86,27 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, string $id)
     {
-        $product = Product::findOrFail($id);
+        $product = Product::find($id);
+        $user = Auth::user();
 
-        $product->title = $request->input('title');
-        $product->description = $request->input('description');
-        $product->category_id = $request->input('category');
-        $product->rating = $request->input('rate');
-        $product->price = $request->input('price');
-        $product->stock = $request->input('stock');
-        $product->show_in_slider = $request->input('slider');
-        $product->save();
+        $productData = $request->except(['images', '_token']);
+        $productData['slug'] = Str::slug($request->title);
+        $productData['user_id'] = $user->id;
+        $product->update($productData);
 
-        return redirect()->route('products.show', ['product' => $product->id]);
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $imageName = time() . '_' . $image->getClientOriginalName();
+                $image->move(public_path('images'), $imageName);
 
+                ProductImage::create([
+                    'image' => $imageName,
+                    'product_id' => $product->id
+                ]);
+            }
+        }
+
+        return redirect()->route('products.index');
     }
 
     /**

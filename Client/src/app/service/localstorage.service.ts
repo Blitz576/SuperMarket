@@ -15,7 +15,7 @@ export class LocalStorageService {
     return localStorage.getItem(key) !== null;
   }
 
-  setValue(key: string, value: string): void {
+  setValue(key: string, value: any): void {
     localStorage.setItem(key, value);
   }
 

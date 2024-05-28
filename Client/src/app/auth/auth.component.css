@@ -18,7 +18,9 @@
     line-height: 1.1;
 }
 
-
+.container div{
+    margin-bottom: 9vmax;
+}
 /* .auth-login-title{
     margin: 40px 0 20px;
     font-family: "Work Sans", sans-serif;
@@ -38,7 +40,7 @@
 .vertical-line {
     width: 2px; 
     margin: auto;
-    height: 90%;
+    height: 100vh;
     background-color: #ccc; 
     border: none;  
 }

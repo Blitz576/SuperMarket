@@ -30,7 +30,7 @@ return new class extends Migration
         User::create([
             'name'          => 'Admin',
             'email'         => 'admin@gmail.com',
-            'password'      => bcrypt('admin'),
+            'password'      => 123456789,
             'role'          => 'administrator',
             'status'        => 'available',
             'created_at'    => now(),
