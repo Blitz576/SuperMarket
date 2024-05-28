@@ -14,7 +14,7 @@ class CategoryController extends Controller
             ->select('id', 'name', 'cover_image')
             ->orderBy('id', 'DESC')
             ->with(['products:id,category_id,title,price,sale_price,slug', 'products.images:id,product_id,image'])
-            ->paginate(30);
+            ->get();
 
         return  response()->json(['message' => 'Products fetched successfully', 'data' => $products], 200);
     }
