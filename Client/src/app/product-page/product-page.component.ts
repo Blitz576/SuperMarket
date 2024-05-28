@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
+import { ProductImageCarouselComponent } from './product-image-carousel/product-image-carousel.component';
 
 @Component({
   selector: 'app-product-page',
   standalone: true,
-  imports: [],
+  imports: [ProductImageCarouselComponent],
   templateUrl: './product-page.component.html',
-  styleUrl: './product-page.component.css'
+  styleUrl: './product-page.component.css',
 })
-export class ProductPageComponent {
-
-}
+export class ProductPageComponent {}
