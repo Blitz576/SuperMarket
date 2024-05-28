@@ -17,24 +17,28 @@ class OrderController extends Controller
     {
         $user = Auth::user();
 
-        $order = new Order();
-        $order->user_id = $user->id;
-        $order->cart_id = $request->cart_id;
-        $order->status = 'pending';
-        $order->notes = $request->notes;
-        $order->save();
+        $orderData = [
+            'user_id' => $user->id,
+            'cart_id' => $request->cart_id,
+            'status' => 'pending',
+            'notes' => $request->notes,
+        ];
+
+        $order = Order::create($orderData);
         $totalPrice = 0;
 
         foreach ($request->items as $item) {
             $product = Product::find($item['product_id']);
             $price = $product->price;
 
-            $orderItem = new OrderItem();
-            $orderItem->order_id = $order->id;
-            $orderItem->product_id = $item['product_id'];
-            $orderItem->quantity = $item['quantity'];
-            $orderItem->price = $price;
-            $orderItem->save();
+            $orderItemData = [
+                'order_id' => $order->id,
+                'product_id' => $item['product_id'],
+                'quantity' => $item['quantity'],
+                'price' => $price,
+            ];
+
+            OrderItem::create($orderItemData);
 
             $totalPrice += $price * $item['quantity'];
         }
@@ -42,7 +46,7 @@ class OrderController extends Controller
         $order->total_price = $totalPrice;
         $order->save();
 
-        return response()->json(['message' => 'order send successfully'], 200);
+        return response()->json(['message' => 'order sent successfully'], 200);
     }
     public function show()
     {
