@@ -15,15 +15,11 @@ class AuthController extends Controller
 {
     public function register(RegisterRequest $request)
     {
-        $user = new User();
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = $request->password;
-        $user->mobile_number = $request->mobile_number;
-        $user->gender = $request->gender;
-        $user->image = 'default.jfif';
+        $data = $request->except('_token', '_method');
+        $data['image'] = 'default.jfif';
 
-        $user->save();
+        $user=User::create($data);
+
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([

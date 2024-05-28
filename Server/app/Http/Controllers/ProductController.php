@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductImage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
 
@@ -34,23 +35,17 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+
     public function store(StoreProductRequest $request)
     {
-        $product = new Product();
-        $product->user_id = $request->user_id;
-        $product->title = $request->title;
-        $product->summary = $request->summary;
-        $product->description = $request->description;
-        $product->category_id = $request->category;
-        $product->rating = $request->rate;
-        $product->price = $request->price;
-        $product->sale_price = $request->sale_price;
-        $product->stock = $request->stock;
-        $product->slug = Str::slug($request->title);
-        if ($request->show_in_homepage) {
-            $product->show_in_homepage = $request->show_in_homepage;
-        }
-        $product->save();
+        $user = Auth::user();
+
+
+        $productData = $request->except(['images', '_token']);
+        $productData['slug'] = Str::slug($request->title);
+        $productData['user_id'] = $user->id;
+
+        $product = Product::create($productData);
 
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
@@ -63,8 +58,10 @@ class ProductController extends Controller
                 ]);
             }
         }
+
         return redirect()->route('products.index');
     }
+
 
     /**
      * Display the specified resource.
@@ -91,22 +88,27 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, string $id)
     {
-        $product = Product::findOrFail($id);
-        
-        $product->user_id = $request->input('user_id');
-        $product->title = $request->input('title');
-        $product->description = $request->input('description');
-        $product->summary = $request->input('summary');
-        $product->category_id = $request->input('category');
-        $product->rating = $request->input('rate');
-        $product->price = $request->input('price');
-        $product->sale_price = $request->input('sale_price');
-        $product->stock = $request->input('stock');
-        $product->show_in_homepage = $request->input('show_in_homepage');
-        $product->save();
+        $product=Product::find($id);
+        $user = Auth::user();
 
-        return redirect()->route('products.show', ['product' => $product->id]);
+        $productData = $request->except(['images', '_token']);
+        $productData['slug'] = Str::slug($request->title);
+        $productData['user_id'] = $user->id; 
+        $product->update($productData);
 
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $imageName = time() . '_' . $image->getClientOriginalName();
+                $image->move(public_path('images'), $imageName); 
+
+                ProductImage::create([
+                    'image' => $imageName,
+                    'product_id' => $product->id
+                ]);
+            }
+        }
+
+        return redirect()->route('products.index');
     }
 
     /**

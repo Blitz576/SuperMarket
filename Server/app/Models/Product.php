@@ -11,6 +11,7 @@ class Product extends Model
     protected $fillable = [
         'title',
         'description',
+        'summary',
         'stock',
         'price',
         'sale_price',
@@ -18,6 +19,7 @@ class Product extends Model
         'rating',
         'status',
         'category_id',
+        'user_id',
         'show_in_homepage',
     ];
     public function category()
