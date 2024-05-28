@@ -146,14 +146,12 @@
                                         homepage</label>
                                 </div>
 
-                                <div>
+                                <div class="my-3">
                                     <input id="payment-button" type="submit" class="btn btn-lg btn-info btn-block"
                                         value="Edit">
                                 </div>
                             </form>
                         </div>
-                        
-
                     </div>
                 </div>
             </div>
