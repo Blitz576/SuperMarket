@@ -70,7 +70,7 @@
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="stock" class="control-label mb-1">Category</label>
-                                            <select class="form-control" name="category">
+                                            <select class="form-control" name="category_id">
                                                 <option disabled selected>Choose category</option>
                                                 @foreach ($categories as $category)
                                                     <option value="{{ $category->id }}" {{ old('category') == $category->id ? 'selected' : '' }}>
@@ -78,7 +78,7 @@
                                                     </option>
                                                 @endforeach
                                             </select>
-                                            @error('category')
+                                            @error('category_id')
                                             <div class="text-danger">{{ $message }}</div>
                                             @enderror
                                         </div>

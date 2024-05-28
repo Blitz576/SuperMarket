@@ -75,7 +75,7 @@
                                         <div class="form-group">
                                             <label for="stock" class="control-label mb-1">Category</label>
                                             <select class="form-control" name="category">
-                                                <option disabled>Choose category</option>
+                                                <option disabled name="category_id">Choose category</option>
                                                 @foreach ($categories as $category)
                                                     <option value="{{ $category->id }}"
                                                         {{ $product->category_id == $category->id ? 'selected' : '' }}>
@@ -113,7 +113,7 @@
                                     <div class="col-4">
                                         <div class="form-group">
                                             <label for="sale_price" class="control-label mb-1">Sale Price</label>
-                                            <input id="sale_price" name="sale_price" type="number" class="form-control">
+                                            <input id="sale_price" name="sale_price" type="number" value="{{$product->sale_price}}" class="form-control">
                                             @error('sale_price')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror
@@ -145,13 +145,14 @@
                                     <label class="form-check-label" for="inlineRadio2">Hide from
                                         homepage</label>
                                 </div>
+
+                                <div>
+                                    <input id="payment-button" type="submit" class="btn btn-lg btn-info btn-block"
+                                        value="Edit">
+                                </div>
                             </form>
                         </div>
-                        <div>
-                            <input id="payment-button" type="submit" class="btn btn-lg btn-info btn-block"
-                                value="Edit">
-                        </div>
-                        </form>
+                        
 
                     </div>
                 </div>
