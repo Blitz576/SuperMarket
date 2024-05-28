@@ -51,4 +51,26 @@ class CartController extends Controller
 
         return response()->json(['message' => 'Product added to cart successfully', 'cart' => $cart, 'cartItem' => $cartItem], 200);
     }
+
+    public function getCart(Request $request)
+    {
+        $user_id = $request->get('user_id');
+        $cart_id = $request->get('cart_id');
+        
+        if ($user_id || $cart_id) {
+            $cart = Cart::with('cartItems:id,cart_id,product_id,quantity')
+                ->where('user_id', $user_id)
+                ->orwhere('id', $cart_id)
+                ->first();
+        } else {
+            return response()->json(['message' => 'No cart found for the user', 'data' => null], 404);
+        }
+        
+        if (!$cart) {
+            return response()->json(['message' => 'No cart found for the user', 'data' => null], 404);
+        }
+        
+        return response()->json(['message' => 'Cart retrieved successfully', 'data' => $cart], 200);
+    }
+
 }
