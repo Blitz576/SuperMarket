@@ -21,36 +21,34 @@ class CartController extends Controller
             'product_id'    => ['required', 'int', 'exists:products,id'],
             'quantity'      => ['int', 'min:1'],
             'user_id'       => ['nullable', 'int', 'exists:users,id'],
+            'cart_id'       => ['nullable', 'int', 'exists:carts,id'],
         ]);
 
-        $productId = $request->post('product_id');
+        $product_id = $request->post('product_id');
         $quantity = $request->post('quantity', 1);
-        $user = Auth::guard('web')->user();
+        $user_id = $request->post('user_id');
+        $cart_id = $request->post('cart_id');
         
-        if (!$user) {
-            $user_id = null;
-        } else {
-            $user_id = $user->id;
-        }
-        
-        $cart = Cart::firstOrCreate(
-            ['user_id' => $user_id],
-            ['total_price' => 0]
+        $cart = Cart::updateOrCreate(
+            ['id'       => $cart_id],
+            ['user_id'  => $user_id]
         );
-
+        
         $cartItem = CartItem::updateOrCreate(
             [
                 'cart_id' => $cart->id,
-                'product_id' => $productId
+                'product_id' => $product_id
             ],
             [
-                'quantity' => DB::raw('quantity + ' . $quantity),
+                'quantity' => DB::raw('quantity + ' . $quantity)
             ]
         );
         
-        $cart->total_price += $cartItem->sale_price * $quantity;
+        $product = Product::findOrFail($product_id);
+
+        $cart->total_price += $product->sale_price * $quantity;
         $cart->save();
 
-        return response()->json(['message' => 'Product added to cart successfully', 'data' => $cartItem], 200);
+        return response()->json(['message' => 'Product added to cart successfully', 'cart' => $cart, 'cartItem' => $cartItem], 200);
     }
 }
