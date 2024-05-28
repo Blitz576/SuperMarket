@@ -19,7 +19,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::with('images')->get();
         return view('dashboard.products.index', ['products' => $products]);
     }
 
@@ -68,11 +68,9 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        $product = Product::find($id);
-        $productImage = ProductImage::where('product_id', $id)->get()->first();
-        return view('dashboard.products.show', ['product' => $product, 'image' => $productImage]);
+        $product = Product::with('images')->find($id);
+        return view('dashboard.products.show', ['product' => $product]);
     }
-
     /**
      * Show the form for editing the specified resource.
      */
@@ -88,18 +86,18 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, string $id)
     {
-        $product=Product::find($id);
+        $product = Product::find($id);
         $user = Auth::user();
 
         $productData = $request->except(['images', '_token']);
         $productData['slug'] = Str::slug($request->title);
-        $productData['user_id'] = $user->id; 
+        $productData['user_id'] = $user->id;
         $product->update($productData);
 
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
                 $imageName = time() . '_' . $image->getClientOriginalName();
-                $image->move(public_path('images'), $imageName); 
+                $image->move(public_path('images'), $imageName);
 
                 ProductImage::create([
                     'image' => $imageName,

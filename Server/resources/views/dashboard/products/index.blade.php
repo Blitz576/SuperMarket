@@ -41,6 +41,7 @@
                                         <th scope="col">Title</th>
                                         <th scope="col">Category</th>
                                         <th scope="col">Stock</th>
+                                        <th scope="col">Image</th>
                                         <th scope="col">Rating</th>
                                         <th scope="col">Status</th>
                                         <th>Actions</th>
@@ -50,6 +51,12 @@
                                     @foreach ($products as $product)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
+                                            <td class="">
+                                                @if ($product->images->isNotEmpty())
+                                                    <img width="80" height="80" class="align-self-center rounded-circle" src="{{ asset('images/' . $product->images->first()->image) }}"
+                                                         alt="{{ $product->title }}">
+                                                @endif
+                                            </td>
                                             <td class="text-success fw-bold">{{ $product->title }}</td>
                                             <td class="text-success fw-bold">{{ $product->category->name }}</td>
                                             <td class="text-success fw-bold">{{ $product->stock }}</td>
@@ -60,7 +67,7 @@
                                             </td>
                                             <th class="text-success fw-bold">{{ $product->status }}</th>
 
-                                            <td>
+                                            <td style="width: 18vw">
                                                 <a href="{{ route('products.show', $product->id) }}"
                                                     class="btn btn-outline-success rounded p-2 mx-2">View</a>
                                                 <a href="{{ route('products.edit', $product->id) }}"

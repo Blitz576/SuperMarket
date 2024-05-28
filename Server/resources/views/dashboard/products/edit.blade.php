@@ -70,6 +70,15 @@
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
+                                @if ($product->images->count() > 0)
+                                    <div class="row">
+                                        @foreach ($product->images as $image)
+                                            <div class="mx-3">
+                                                <img src="{{ asset('images/'.$image->image) }}"  alt="{{ $product->title }}" width="100" height="100">
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                @endif
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="form-group">
@@ -113,7 +122,8 @@
                                     <div class="col-4">
                                         <div class="form-group">
                                             <label for="sale_price" class="control-label mb-1">Sale Price</label>
-                                            <input id="sale_price" name="sale_price" type="number" value="{{$product->sale_price}}" class="form-control">
+                                            <input id="sale_price" name="sale_price" type="number"
+                                                value="{{ $product->sale_price }}" class="form-control">
                                             @error('sale_price')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror
@@ -146,14 +156,17 @@
                                         homepage</label>
                                 </div>
 
-                                <div>
+                                <div class="my-3">
                                     <input id="payment-button" type="submit" class="btn btn-lg btn-info btn-block"
                                         value="Edit">
                                 </div>
                             </form>
                         </div>
-                        
+<<<<<<< HEAD
 
+
+=======
+>>>>>>> d271f693a102d18a6d78b1d71b0bd31581ff0e92
                     </div>
                 </div>
             </div>
