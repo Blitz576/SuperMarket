@@ -37,8 +37,7 @@ export class LoginComponent {
   }
     submitLogin(){
     try{  
-    this.localStorage.setValue('user',this.user_mail);
-    this.localStorage.setValue('password',this.password);
+    
     this.router.navigate(['/home']);
     }
     catch(error){

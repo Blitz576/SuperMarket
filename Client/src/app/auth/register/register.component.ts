@@ -1,6 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
+import { LocalStorageService } from '../../service/localstorage.service';
+import { UserInfo } from '../../models/user-info';
+import { UserService } from '../../service/user.service';
+import { Token } from '../../models/token';
 
 @Component({
   selector: 'app-register',
@@ -21,6 +25,13 @@ export class RegisterComponent {
   passwordFieldType: string = 'password';
   errorInSubmitting: string = 'hide-error';
 
+  constructor(
+    private localStorage: LocalStorageService,
+    private token: Token,
+    private userData: UserInfo,
+    private userService: UserService
+  ) {}
+
   togglePasswordVisibility() {
     if (this.passwordFieldType === 'password') {
       this.passwordFieldType = 'text';
@@ -39,11 +50,30 @@ export class RegisterComponent {
     }
   }
 
+  setregisterToken(token: string) {
+    this.localStorage.setValue('registerToken', token);
+  }
+
   submitRegister() {
     try {
-            
-      this.errorInSubmitting = 'hide-error';
-      // Redirect to login or home page
+      // Create user info object
+      let registedUser: UserInfo = {
+        name: `${this.first_name} ${this.last_name}`,
+        email: this.email,
+        password: this.password,
+        gender: this.gender,
+        mobile_number: '01205891977'
+      };
+
+      this.userService.register(registedUser).subscribe({
+        next: (response: any) => {
+          this.setregisterToken(response.access_token);
+          this.errorInSubmitting = 'hide-error';
+        },
+        error: () => {
+          throw new Error('Error');
+        }
+      });
     } catch (error) {
       this.errorInSubmitting = 'show-error';
     }
