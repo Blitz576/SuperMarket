@@ -1,0 +1,29 @@
+.not-found{
+    font-family: "Work Sans",sans-serif;
+    width: 100vw;
+    height: 25vh;
+    margin-top: 18vmax;
+    margin-bottom: 10vmax;
+}
+.not-found h2{
+    font-size: 3rem;
+    font-weight: 500;
+}
+.not-found h4{
+    font-size: 2rem;
+    font-weight: 500;
+}
+.not-found p{
+    color: rgb(140,140,140);
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.button-font{
+    font-size: 0.5rem;
+    font-weight: 500;
+    transition: all 0.3 ease;
+}
+.button-font:hover{
+    color: white;
+}

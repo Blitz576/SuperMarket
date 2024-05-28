@@ -7,37 +7,6 @@
 <!-- * * * * * * * to get started with your project! * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
-
-
-<app-nav-element>
-</app-nav-element>
-<app-hero></app-hero>
-<section class="mt-3" style="background-color: #eee;">
-  <div class="container py-5">
-    <div class="row">
-      @for (product of products; track $index) {
-        <div class="col-md-4 mb-4">
-          <app-popular
-            [imageUrl]="product.imageUrl"
-            [name]="product.name"
-            [price]="product.price"
-            [originalPrice]="product.originalPrice"
-            [category]="product.category"
-            [stock]="product.stock"
-            [rating]="product.rating">
-          </app-popular>
-        </div>
-      }
-    </div>
-  </div>
-</section>
-
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
+<app-nav-element> </app-nav-element>
 <router-outlet />
+<app-footer> </app-footer>

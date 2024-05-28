@@ -1,0 +1,45 @@
+@if(cartItems.length==0){
+<section class="not-found">
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+	<path d="M40.0034 15.0959C43.812 11.6866 48.7817 9.86546 53.8914 10.0068C59.001 10.1482 63.8625 12.2412 67.4767 15.8559C71.0879 19.4665 73.1812 24.3217 73.3274 29.4262C73.4737 34.5307 71.6619 39.4977 68.2634 43.3092L39.9967 71.6159L11.7367 43.3092C8.33426 39.4958 6.52075 34.5244 6.66853 29.4158C6.8163 24.3073 8.91416 19.4491 12.5314 15.8387C16.1486 12.2283 21.0108 10.1396 26.1196 10.0015C31.2285 9.86333 36.1964 11.6862 40.0034 15.0959ZM62.7567 20.5659C60.3487 18.1597 57.1111 16.7662 53.7082 16.6713C50.3053 16.5765 46.9951 17.7875 44.4567 20.0559L40.0067 24.0492L35.5534 20.0592C33.0135 17.7881 29.7004 16.5758 26.2946 16.6713C22.8887 16.7667 19.6487 18.1627 17.2401 20.5726C14.8543 22.9582 13.4616 26.1597 13.3428 29.5316C13.2241 32.9034 14.388 36.1949 16.6001 38.7426L40.0001 62.1792L63.4001 38.7459C65.6146 36.1973 66.7797 32.9034 66.6603 29.5291C66.5409 26.1549 65.1459 22.9516 62.7567 20.5659Z" fill="#BEC1C4"></path>
+</svg>
+
+<p> Your Wishlist is currently empty. </p>
+<button (click)="goHome()" class="btn btn-dark btn-block rounded-pill"> Return To Home</button>
+</section>					
+}
+@else{
+	<h1 class="cart-title">
+        Your Shopping Cart
+	</h1>
+	<table class="table cart-table">
+		<thead>
+		   <tr>
+			<th >Product</th>
+			<th>Price</th>
+			<th></th>
+		  </tr>
+		</thead>
+		<tbody>
+		<tr *ngFor="let cartItem of cartItems">
+            <td >
+				<div class="d-flex align-items-center ">
+				<img [src]="cartItem.image" class="cart-table-image mx-3" [alt]="cartItem.name">
+				<p class="cart-item-name mx-2">{{cartItem.name}}</p>
+				</div>
+			</td>
+			<td class="cart-table-item-price">
+				${{cartItem.price}}
+			</td>
+
+			<td class="other">
+			<button style="background-color:white;border:none;outline:none" (click)="removeItem(cartItem.id)">	
+			  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M17 6H22V8H20V21C20 21.2652 19.8946 21.5196 19.7071 21.7071C19.5196 21.8946 19.2652 22 19 22H5C4.73478 22 4.48043 21.8946 4.29289 21.7071C4.10536 21.5196 4 21.2652 4 21V8H2V6H7V3C7 2.73478 7.10536 2.48043 7.29289 2.29289C7.48043 2.10536 7.73478 2 8 2H16C16.2652 2 16.5196 2.10536 16.7071 2.29289C16.8946 2.48043 17 2.73478 17 3V6ZM18 8H6V20H18V8ZM9 4V6H15V4H9Z" fill="#121212"></path>
+				</svg>
+			</button>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+}

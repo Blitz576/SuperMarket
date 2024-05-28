@@ -1,5 +1,80 @@
 #carouselExampleCaptions .carousel-inner img{
   min-width: 80%;
-  max-width: 100%;
-  max-height: 500px;
+  max-width: 100vw;
+  height: 65vh;
+  min-height: 40vh;
 }
+
+
+.carousel-caption{
+  font-family: "Work Sans",sans-serif;
+  font-weight: 500;
+  color:black;
+  position: absolute;
+  top: 45%;
+}
+
+.carousel-caption h4{
+  font-size: 1rem;
+  font-weight: 300;
+}
+.carousel-caption h5{
+  font-size: 2.8rem;
+}
+.carousel-caption p{
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+
+
+.carousel-caption-1{
+  font-family: "Work Sans",sans-serif;
+  font-weight: 500;
+  color:black;
+  position: absolute;
+  top: 35%;
+  left:3%;
+  width: 30%;
+}
+
+.carousel-caption-1 h4{
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-bottom: 2%;
+}
+.carousel-caption-1 h5{
+  font-size: 2.8rem;
+  margin-bottom:5%;
+}
+.carousel-caption-1 p{
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+
+
+
+
+
+.carousel-indicators button {
+  background-color: lightgray;
+  border-radius: 50%;
+  width: 7px;
+  height: 7px;
+  transition: background-color 0.2s ease,width 0.2s ease,margin 0.2s ease;
+}
+.carousel-indicators button:hover{
+  background-color:rgb(24, 24, 24);
+  
+}
+
+.carousel-indicators .active {
+  background-color: black;
+  width: 9.5px;
+  height: 9.5px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+

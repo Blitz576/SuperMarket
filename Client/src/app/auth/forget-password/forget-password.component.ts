@@ -1,6 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { trigger, transition, style, animate } from '@angular/animations';
+import { trigger, transition, style, animate, animation } from '@angular/animations';
 
 @Component({
   selector: 'app-forget-password',
@@ -21,4 +21,8 @@ import { trigger, transition, style, animate } from '@angular/animations';
     ])
   ]
 })
-export class ForgetPasswordComponent {}
+export class ForgetPasswordComponent implements OnDestroy {
+
+  ngOnDestroy(): void {
+  }
+}

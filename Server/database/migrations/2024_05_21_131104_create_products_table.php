@@ -14,17 +14,21 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id(); 
             $table->string('title');
+            $table->text('summary')->nullable();
             $table->text('description');
             $table->integer('stock');
             $table->decimal('price', 8, 2);
-            $table->string('slug');
+            $table->decimal('sale_price', 8, 2)->default(0.00);
+            $table->string('slug')->nullable();
             $table->enum('rating',['1','2','3','4','5']);
             $table->enum('status', ['available', 'unavailable'])->default('available');
-            $table->unsignedBigInteger('category');
-            $table->enum('show_in_slider',['show','hide'])->default('hide');
+            $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('user_id');
+            $table->enum('show_in_homepage',['show','hide'])->default('hide');
             $table->timestamps();
 
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

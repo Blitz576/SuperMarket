@@ -1,0 +1,15 @@
+.light-background {
+  background-color: #f8f9fa;
+  padding: 20px;
+}
+.dark-background {
+  background-color: #252729;
+  color: white;
+  padding: 20px;
+}
+.text-primary-custom {
+  color: #007bff;
+}
+.text-danger-custom {
+  color: #ad1e2c;
+}
