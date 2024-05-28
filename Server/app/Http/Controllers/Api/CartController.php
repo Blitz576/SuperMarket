@@ -73,4 +73,22 @@ class CartController extends Controller
         return response()->json(['message' => 'Cart retrieved successfully', 'data' => $cart], 200);
     }
 
+
+    public function destroy($cart_id)
+    {
+        $cart = Cart::where('id', $cart_id)->first();
+
+        if (!$cart) {
+            return response()->json(['message' => 'Cart not found'], 404);
+        }
+
+        CartItem::where('cart_id', $cart->id)->delete();
+
+        $cart->delete();
+
+        return response()->json(['message' => 'Cart deleted successfully'], 200);
+    }
+
+    
+
 }
