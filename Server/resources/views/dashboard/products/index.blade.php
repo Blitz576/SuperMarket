@@ -41,6 +41,7 @@
                                         <th scope="col">Title</th>
                                         <th scope="col">Category</th>
                                         <th scope="col">Stock</th>
+                                        <th scope="col">Image</th>
                                         <th scope="col">Rating</th>
                                         <th scope="col">Status</th>
                                         <th>Actions</th>
@@ -53,6 +54,13 @@
                                             <td class="text-success fw-bold">{{ $product->title }}</td>
                                             <td class="text-success fw-bold">{{ $product->category->name }}</td>
                                             <td class="text-success fw-bold">{{ $product->stock }}</td>
+                                            <td class="">
+                                                @if ($product->images->isNotEmpty())
+                                                    <img width="80" height="80" src="{{ asset('images/' . $product->images->first()->image) }}"
+                                                        alt="{{ $product->title }}">
+                                                @endif
+                                            </td>
+
                                             <td class="text-success fw-bold">
                                                 @for ($i = 1; $i <= $product->rating; $i++)
                                                     <i class="fa fa-star text-warning"></i>
