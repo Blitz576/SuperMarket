@@ -49,7 +49,11 @@ class CartController extends Controller
         $cart->total_price += $product->sale_price * $quantity;
         $cart->save();
 
-        return response()->json(['message' => 'Product added to cart successfully', 'cart' => $cart, 'cartItem' => $cartItem], 200);
+        return response()->json([
+            'message'   => 'Product added to cart successfully',
+            'cart'      => $cart,
+            'cartItem'  => $cartItem
+        ], 200);
     }
 
     public function getCart(Request $request)
@@ -74,9 +78,49 @@ class CartController extends Controller
     }
 
 
+    public function updateItem(Request $request, $cart_id, $item_id)
+    {
+        $request->validate([
+            'quantity' => ['required', 'int', 'min:1'],
+        ]);
+
+        $quantity = $request->post('quantity', 1);
+        /*$user = Auth::user();
+        $userId = $user ? $user->id : null;*/
+
+        $cart = Cart::where('id', $cart_id)->select('id', 'user_id', 'total_price')->first();
+
+        if (!$cart) {
+            return response()->json(['message' => 'Cart not found'], 404);
+        }
+
+        $cartItem = CartItem::where('cart_id', $cart->id)
+            ->where('id', $item_id)
+            ->select('id', 'cart_id', 'product_id', 'quantity')
+            ->first();
+
+        if (!$cartItem) {
+            return response()->json(['message' => 'Item not found in cart'], 404);
+        }
+
+        $product = Product::findOrFail($cartItem->product_id);
+        $cart->total_price -= $cartItem->quantity * $product->sale_price;
+        $cart->total_price += $quantity * $product->sale_price;
+        $cart->save();
+
+        $cartItem->quantity = $quantity;
+        $cartItem->save();
+
+        return response()->json([
+            'message'   => 'Cart item updated successfully',
+            'cart'      => $cart,
+            'cartItem'  => $cartItem
+        ], 200);
+    }
+    
     public function destroy($cart_id)
     {
-        $cart = Cart::where('id', $cart_id)->first();
+        $cart = Cart::where('id', $cart_id)->select('id', 'user_id', 'total_price')->first();
 
         if (!$cart) {
             return response()->json(['message' => 'Cart not found'], 404);
@@ -93,7 +137,7 @@ class CartController extends Controller
     {
         $userId =  Auth::user() ?  Auth::user()->id : null;
 
-        $cart = Cart::where('id', $cart_id)->first();
+        $cart = Cart::where('id', $cart_id)->select('id', 'user_id', 'total_price')->first();
 
         if (!$cart) {
             return response()->json(['message' => 'Cart not found'], 404);
@@ -101,6 +145,7 @@ class CartController extends Controller
 
         $cartItem = CartItem::where('cart_id', $cart->id)
             ->where('id', $item_id)
+            ->select('id', 'cart_id', 'product_id', 'quantity')
             ->first();
 
         if (!$cartItem) {
