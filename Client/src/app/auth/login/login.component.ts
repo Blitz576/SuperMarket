@@ -59,8 +59,8 @@ export class LoginComponent implements OnDestroy {
           next: (response) => {
             console.log(response)
             this.localStorage.setValue("loginToken", response.access_token);
-            this.localStorage.setValue("uEmail", this.user_mail);
-            
+            this.localStorage.setValue("user_id", response.user_id);
+
             this.localStorage.removeValue("registerToken");
             this.router.navigate(['/home']);
           },
