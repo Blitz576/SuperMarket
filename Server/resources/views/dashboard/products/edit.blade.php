@@ -38,6 +38,7 @@
                             <form action="{{ route('products.update', ['product' => $product->id]) }}" method="post"
                                 novalidate="novalidate" enctype="multipart/form-data">
                                 @csrf
+                                
                                 @method('PUT')
                                 <div class="form-group">
                                     <label for="title" class="control-label mb-1">Name</label>
@@ -162,11 +163,6 @@
                                 </div>
                             </form>
                         </div>
-<<<<<<< HEAD
-
-
-=======
->>>>>>> d271f693a102d18a6d78b1d71b0bd31581ff0e92
                     </div>
                 </div>
             </div>

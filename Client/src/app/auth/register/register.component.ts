@@ -1,6 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
+import { LocalStorageService } from '../../service/localstorage.service';
+import { UserInfo } from '../../models/user-info';
+import { UserService } from '../../service/user.service';
+import { Token } from '../../models/token';
 
 @Component({
   selector: 'app-register',
@@ -9,17 +13,25 @@ import { FormsModule, NgForm } from '@angular/forms';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnDestroy{
+  
   first_name: string = '';
   last_name: string = '';
   gender: string = '';
   email: string = '';
   password: string = '';
   confirm_password: string = '';
-
+  mobile_number:string='';
   passwordIcon: string = 'fas fa-eye-slash';
   passwordFieldType: string = 'password';
   errorInSubmitting: string = 'hide-error';
+  errorMessage:string="Error While Register ";
+  errorIcon:string="bi bi-check-circle";
+  private userData: UserInfo=new UserInfo;
+  constructor(
+    private localStorage: LocalStorageService,
+    private userService: UserService
+  ) {}
 
   togglePasswordVisibility() {
     if (this.passwordFieldType === 'password') {
@@ -39,13 +51,45 @@ export class RegisterComponent {
     }
   }
 
+  setregisterToken(token: string) {
+    this.localStorage.setValue("uEmail",this.email);
+    this.localStorage.setValue("uPassword",this.confirm_password);
+    this.localStorage.setValue('registerToken', token);
+  }
+
   submitRegister() {
     try {
-            
-      this.errorInSubmitting = 'hide-error';
-      // Redirect to login or home page
+      // Create user info object
+      let registedUser: UserInfo = {
+        name: `${this.first_name} ${this.last_name}`,
+        email: this.email,
+        password: this.password,
+        gender: this.gender,
+        mobile_number: this.mobile_number
+      };
+
+     let registrationProcess= this.userService.register(registedUser).subscribe({
+        next: (response: any) => {
+          this.setregisterToken(response.access_token);
+          this.errorInSubmitting = 'show-error text-success custom-alert';
+          this.errorMessage="Registed Successfully"
+          this.errorIcon="bi bi-dash-circle mx-2"
+        
+        },
+        error: (error) => {
+          this.errorInSubmitting = 'show-error text-danger custom-alert';
+          this.errorMessage="Error While Registering"
+          this.errorIcon="bi bi-dash-circle mx-2";
+        }
+
+      });
     } catch (error) {
-      this.errorInSubmitting = 'show-error';
+          this.errorInSubmitting = 'show-error text-danger custom-alert';
+          this.errorMessage="Error While Registering"
+
     }
+  }
+  ngOnDestroy(): void {
+    
   }
 }
