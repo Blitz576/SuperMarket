@@ -7,6 +7,7 @@ import { authenticationLoginGuard } from './guard/authentication-login.guard';
 import { ProductPageComponent } from './product-page/product-page.component';
 import { WatchListComponent } from './watch-list/watch-list.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { CategoryComponent } from './category/category.component';
 
 export const routes: Routes = [
   // Add canActivate:[authenticationLoginGuard] To Your Critical Route For Authentication
@@ -28,6 +29,10 @@ export const routes: Routes = [
     canActivate: [authenticationLoginGuard],
   },
   { path: 'product/:id', component: ProductPageComponent },
+  {
+    path: 'categories/:id',
+    component: CategoryComponent,
+  },
   {
     path: 'watch-list',
     component: WatchListComponent,

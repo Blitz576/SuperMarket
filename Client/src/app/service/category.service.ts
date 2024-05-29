@@ -19,4 +19,18 @@ export class CategoryService {
       map(response => response.data.map((item: any) => new Category(item)))
     );
   }
+
+  getCategoryById(id: number): Observable<Category> {
+    return this.http.get<any>(`${this.apiUrl}/${id}`).pipe(
+      map(response => new Category(response.data[0]))
+    );
+  }
+  
+  getProductFromCategory(id: number): Observable<Category> {
+    return this.http.get<any>(`${this.apiUrl}/${id}`).pipe(
+      map(response => new Category(response.data[0]))
+    );
+  }
+
+
 }

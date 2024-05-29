@@ -1,0 +1,47 @@
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-md-3 mt-3 h-100">
+      <div class="card">
+        <div class="card-title">
+          <p class="text-center fs-3">All Categor</p>
+          <hr class="w-50 text-center m-auto">
+        </div>
+        <div class="card-body">
+          <div class="list-group">
+            <div class="list-group" id="list-tab" role="tablist">
+              @if (categories.length > 0) {
+                @for (category of categories; track $index) {
+                  <a class="list-group-item list-group-item-action " id="list-home-list" data-bs-toggle="list" href="#list-home" role="tab" aria-controls="list-home" [class.active]="category.id === categoryId"
+                  routerLink="/categories/{{category.id}}"
+                  >{{category.name}}</a>
+                }
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <section class="mt-3">
+        <div class="container ">
+          <div class="row">
+            @for (product of categoryProducts; track $index) {
+            <div class="col-md-4 mb-4">
+              <app-popular
+                [imageUrl]="product.images[0].image"
+                [name]="product.title"
+                [price]="product.price"
+                [originalPrice]="product.sale_price"
+                [rating]="product.rating"
+                [stock]="product.stock"
+                [id]="product.id"
+              >
+              </app-popular>
+            </div>
+            }
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

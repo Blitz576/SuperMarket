@@ -14,7 +14,8 @@
             <a href="" class="text-reset">
               <h5 class="card-title mb-3">{{ category.name }}</h5>
             </a>
-            <a  class="btn btn-primary">Show Products</a>
+
+            <a routerLink="/categories/{{ category.id}}" routerLinkActive="router-link-active"  class="btn btn-primary">Show Products</a>
           </div>
         </div>
       </div>

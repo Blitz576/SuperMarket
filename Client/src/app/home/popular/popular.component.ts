@@ -11,12 +11,21 @@ import { FormsModule } from '@angular/forms';
 })
 export class PopularComponent {
 
-  @Input() imageUrl: string = '';
+  @Input() imageUrl: any = '';
   @Input() name: string = '';
-  @Input() price: number = 0;
-  @Input() originalPrice: number = 0;
-  @Input() category: string = '';
-  @Input() stock: number = 0;
-  @Input() rating: number = 0;
+  @Input() price: any = 0;
+  @Input() originalPrice: any = 0;
+  @Input() category: any = '';
+  @Input() stock: any = 0;
+  @Input() rating: any = 0;
+  @Input() id: any = '';
 
+  viewDetails(id:any){
+    console.log(id);
+  }
+
+  addToWishlist(id:any){
+    console.log(id);
+
+  }
 }
