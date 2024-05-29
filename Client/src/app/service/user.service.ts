@@ -14,13 +14,13 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  login(user: LoggedInUser, token: Token) {
+  login(user: LoggedInUser, token: string) {
     if (token === null) {
       throw new Error("Unauthorized To Sign In");
     }
 
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token.access_token}`,
+      'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json',
       'Accept': 'application/json'
     });

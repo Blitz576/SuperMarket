@@ -1,5 +1,5 @@
 export class LoggedInUser {
     email:string="";
-    passowrd:string="";
+    password:string="";
     device_name:string="mobile";
 }
