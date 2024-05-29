@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import jwt_decode from 'jwt-decode'
+import {jwtDecode} from 'jwt-decode'
 @Injectable({
   providedIn: 'root'
 })
@@ -7,11 +7,15 @@ export class DecodeJwtTokenService {
    
   constructor() { }
 
-  decodeToken(token: string): any {
+  decodeToken(token: string|null): any {
     try {
-      return jwt_decode.jwtDecode(token)
+      if(token === null){
+        throw new Error("invalid token")
+      }
+      let decodedToken = token
+      return jwtDecode(decodedToken)
     } catch (error) {
-      console.error('Error decoding token:', error);
+      console.error('Error', error);
       return null;
     }
   }
