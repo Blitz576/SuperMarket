@@ -22,6 +22,7 @@ export class RegisterComponent implements OnDestroy{
   password: string = '';
   confirm_password: string = '';
   mobile_number:string='';
+  registrationProcess:any="";
   passwordIcon: string = 'fas fa-eye-slash';
   passwordFieldType: string = 'password';
   errorInSubmitting: string = 'hide-error';
@@ -68,13 +69,11 @@ export class RegisterComponent implements OnDestroy{
         mobile_number: this.mobile_number
       };
 
-     let registrationProcess= this.userService.register(registedUser).subscribe({
+     this.registrationProcess = this.userService.register(registedUser).subscribe({
         next: (response: any) => {
-          this.setregisterToken(response.access_token);
           this.errorInSubmitting = 'show-error text-success custom-alert';
           this.errorMessage="Registed Successfully"
-          this.errorIcon="bi bi-dash-circle mx-2"
-        
+          this.errorIcon="bi bi-dash-circle mx-2"       
         },
         error: (error) => {
           this.errorInSubmitting = 'show-error text-danger custom-alert';
@@ -90,6 +89,8 @@ export class RegisterComponent implements OnDestroy{
     }
   }
   ngOnDestroy(): void {
-    
+     if (this.registrationProcess) {
+      this.registrationProcess.unsubscribe();
+    }
   }
 }
