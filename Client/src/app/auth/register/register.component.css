@@ -79,4 +79,6 @@
 
 .show-error {
   display: block;
+  font-family: "Work Sans",sans-serif;
+  font-size: 1.1rem;
 }

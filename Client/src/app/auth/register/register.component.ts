@@ -20,15 +20,15 @@ export class RegisterComponent {
   email: string = '';
   password: string = '';
   confirm_password: string = '';
-
+  mobile_number:string='';
   passwordIcon: string = 'fas fa-eye-slash';
   passwordFieldType: string = 'password';
   errorInSubmitting: string = 'hide-error';
-
+  errorMessage:string="Error While Register ";
+  errorIcon:string="bi bi-check-circle";
+  private userData: UserInfo=new UserInfo;
   constructor(
     private localStorage: LocalStorageService,
-    private token: Token,
-    private userData: UserInfo,
     private userService: UserService
   ) {}
 
@@ -62,20 +62,28 @@ export class RegisterComponent {
         email: this.email,
         password: this.password,
         gender: this.gender,
-        mobile_number: '01205891977'
+        mobile_number: this.mobile_number
       };
 
       this.userService.register(registedUser).subscribe({
         next: (response: any) => {
+          console.log(response);
           this.setregisterToken(response.access_token);
-          this.errorInSubmitting = 'hide-error';
+          this.errorInSubmitting = 'show-error text-success custom-alert';
+          this.errorMessage="Registed Successfully"
+          this.errorIcon="bi bi-dash-circle mx-2"
         },
-        error: () => {
-          throw new Error('Error');
+        error: (error) => {
+          this.errorInSubmitting = 'show-error text-danger custom-alert';
+          this.errorMessage="Error While Registering"
+          this.errorIcon="bi bi-dash-circle mx-2";
         }
+
       });
     } catch (error) {
-      this.errorInSubmitting = 'show-error';
+          this.errorInSubmitting = 'show-error text-danger custom-alert';
+          this.errorMessage="Error While Registering"
+
     }
   }
 }

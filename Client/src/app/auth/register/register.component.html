@@ -2,6 +2,7 @@
   <div class="cardd-body">
     <h3 class="mb-4">Register</h3>
     <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+      <!-- First Name Field -->
       <div class="form-group">
         <label for="first_name">First Name</label>
         <input
@@ -23,6 +24,8 @@
           </div>
         </div>
       </div>
+      
+      <!-- Last Name Field -->
       <div class="form-group">
         <label for="last_name">Last Name</label>
         <input
@@ -44,6 +47,8 @@
           </div>
         </div>
       </div>
+      
+      <!-- Gender Field -->
       <div class="form-group">
         <label for="gender">Gender</label>
         <select
@@ -64,6 +69,8 @@
           </div>
         </div>
       </div>
+      
+      <!-- Email Field -->
       <div class="form-group">
         <label for="email">Email address</label>
         <input
@@ -86,6 +93,31 @@
           </div>
         </div>
       </div>
+
+      <!-- Mobile Number Field -->
+      <div class="form-group">
+        <label for="mobile_number">Mobile Number</label>
+        <input
+          type="text"
+          class="form-control"
+          id="mobile_number"
+          placeholder="Text"
+          [(ngModel)]="mobile_number"
+          name="mobile_number"
+          #validate_mobile_number="ngModel"
+          required
+        />
+        <div
+          *ngIf="validate_mobile_number.invalid && validate_mobile_number.touched"
+          class="alert custom-alert"
+        >
+          <div *ngIf="validate_mobile_number.hasError('required')" class="text-danger custom-error">
+            <i class="bi bi-dash-circle"></i> Mobile Number is required
+          </div>
+        </div>
+      </div>
+
+      <!-- Password Field -->
       <div class="form-group">
         <label for="password">Password</label>
         <div class="input-group">
@@ -115,6 +147,8 @@
           </div>
         </div>
       </div>
+
+      <!-- Confirm Password Field -->
       <div class="form-group">
         <label for="confirm_password">Confirm Password</label>
         <div class="input-group">
@@ -138,9 +172,12 @@
           </div>
         </div>
       </div>
+
+      <!-- Register Button -->
       <button type="submit" class="btn btn-dark btn-block rounded-pill">
         Register
-      </button>
+      </button>      
     </form>
+   <p [ngClass]="errorInSubmitting"><i [ngClass]="errorIcon"></i>{{errorMessage}}</p>
   </div>
 </div>
