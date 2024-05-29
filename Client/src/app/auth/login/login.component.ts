@@ -47,17 +47,7 @@ export class LoginComponent implements OnDestroy {
 
   submitLogin() {
     try {
-      // Check out data from user
-      if (this.user_mail != this.localStorage.getValue("uEmail") || this.password != this.localStorage.getValue("uPassword")) {
-        console.log(this.user_mail == this.localStorage.getValue("uEmail"))
-        console.log(this.password == this.localStorage.getValue("uPassword"));
-        throw new Error("Wrong Email Or Password");
-      }
-
-      let encodedToken = this.localStorage.getValue("registerToken");
-      if (!encodedToken) {
-        throw new Error("Wrong Email Or Password");
-      } else {
+      
         // Generate object
         let loggedInUserData: LoggedInUser = {
           email: this.user_mail,
@@ -65,10 +55,12 @@ export class LoginComponent implements OnDestroy {
           device_name: "mobile"
         };
 
-        this.loginProcess = this.userService.login(loggedInUserData, encodedToken).subscribe({
+        this.loginProcess = this.userService.login(loggedInUserData).subscribe({
           next: (response) => {
             console.log(response)
-            this.localStorage.setValue("loinToken", response.access_token);
+            this.localStorage.setValue("loginToken", response.access_token);
+            this.localStorage.setValue("user_id", response.user_id);
+
             this.localStorage.removeValue("registerToken");
             this.router.navigate(['/home']);
           },
@@ -77,11 +69,11 @@ export class LoginComponent implements OnDestroy {
             this.errorInSubmitting = 'show-error text-danger';
           }
         });
-      }
     } catch (error) {
       
       this.errorInSubmitting = 'show-error text-danger';
     }
+    
   }
 
   ngOnDestroy() {

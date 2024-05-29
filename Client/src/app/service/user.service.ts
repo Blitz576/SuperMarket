@@ -11,16 +11,12 @@ export class UserService {
 
   private registerUrl = "http://127.0.0.1:8000/api/register/";
   private loginUrl = "http://127.0.0.1:8000/api/login/";
-
+  private logoutUrl = "http://127.0.0.1:8000/api/logout/";
   constructor(private http: HttpClient) { }
 
-  login(user: LoggedInUser, token: string) {
-    if (token === null) {
-      throw new Error("Unauthorized To Sign In");
-    }
-
+  login(user: LoggedInUser) {
+    
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json',
       'Accept': 'application/json'
     });
@@ -36,4 +32,15 @@ export class UserService {
 
     return this.http.post<Token>(this.registerUrl, user, { headers });
   }
+
+  logout(token: string) {
+    
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    });
+    return this.http.post<any>(this.logoutUrl ,{},{ headers });
+  }
+
 }

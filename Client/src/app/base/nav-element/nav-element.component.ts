@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { LocalStorageService } from '../../service/localstorage.service';
+import { UserService } from '../../service/user.service';
 
 @Component({
   selector: 'app-nav-element',
@@ -11,7 +12,7 @@ import { LocalStorageService } from '../../service/localstorage.service';
 })
 export class NavElementComponent{
 
-  constructor(private localStorage:LocalStorageService,private router:Router){}
+  constructor(private localStorage:LocalStorageService,private router:Router,private userService:UserService){}
   isOpen = false;
   isLoggedIn=false;
   openNav(event: Event) {
@@ -26,7 +27,7 @@ export class NavElementComponent{
   }
 
   checkLogin(){
-     if(this.localStorage.checkValue('user')){
+     if(this.localStorage.checkValue('loginToken')){
        this.isLoggedIn=true;
      }
     else
@@ -34,10 +35,27 @@ export class NavElementComponent{
   }
 
   logout(){
-    this.localStorage.removeValue('user');
-    this.localStorage.removeValue('password');
-    this.isLoggedIn=false;
-    this.router.navigate(['/auth']);
+    let stringfiedToken = this.localStorage.getValue("loginToken");
+    let encodedToken = ""
+    if(stringfiedToken !== null){
+      encodedToken = stringfiedToken;
+      console.log(encodedToken);
+    }
+
+
+   let logoutProcess = this.userService.logout(encodedToken).subscribe(
+    {next:()=>{
+      this.localStorage.removeValue('uEmail');
+      this.localStorage.removeValue('loginToken');
+      this.isLoggedIn=false;
+      this.router.navigate(['/auth']);     
+    },
+    error:(error)=>{
+      console.log(error);
+    } 
+  }
+   )
+   
   }
 
 }
