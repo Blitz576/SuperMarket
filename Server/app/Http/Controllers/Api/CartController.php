@@ -70,7 +70,7 @@ class CartController extends Controller
                 ])
                 ->where('user_id', $user_id)
                 ->orwhere('id', $cart_id)
-                ->first();
+                ->get();
         } else {
             return response()->json(['message' => 'No cart found for the user', 'data' => null], 404);
         }

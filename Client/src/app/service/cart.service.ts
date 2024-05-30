@@ -14,20 +14,24 @@ export class CartService {
   constructor(private http: HttpClient) { }
 
 
-  addToCart(newCartItem: CartItem) {
+  addToCart(product_id:any) {
+    console.log(product_id);
 
+    const user_id = 1 || localStorage.getItem('user_id') ;
+    return this.http.post<any>(this.apiUrl, {
+      product_id: product_id,
+      user_id: user_id
+    });
   }
 
   getCartItems() {
     const user_id = 1 || localStorage.getItem('user_id') ;
     const params = new HttpParams().set('user_id', user_id);
-
-    return this.http.get<any>(this.apiUrl, { params }).pipe(
-      map(response => new Cart(response.data))
-    );
+    return this.http.get<any>(this.apiUrl, { params });
   }
 
   removeFromCart(targetItemId: number) {
+    
   }
 
 }

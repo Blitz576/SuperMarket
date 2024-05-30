@@ -21,8 +21,8 @@
       </div>
     </div>
     <div class="d-flex justify-content-between  mt-3">
-      <button class="btn btn-primary btn-sm px-4 me-2" ><i class="bi bi-cart"></i></button>
-      <button class="btn btn-outline-primary btn-sm px-4" (click)="viewDetails(id)"><i class="bi bi-eye-fill"></i>
+      <button class="btn btn-primary btn-sm px-4 me-2" (click)="addToCart(id)"><i class="bi bi-cart"></i></button>
+      <button class="btn btn-outline-primary btn-sm px-4" (click)="viewDetails(slug)"><i class="bi bi-eye-fill"></i>
       </button>
       <button class="btn btn-outline-primary btn-sm px-4" (click)="addToWishlist(id)"><i class="bi bi-heart"></i></button>
     </div>
