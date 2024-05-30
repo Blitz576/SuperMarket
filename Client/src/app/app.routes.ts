@@ -26,7 +26,7 @@ export const routes: Routes = [
   {
     path: 'cart',
     component: CartComponent,
-    canActivate: [authenticationLoginGuard],
+    // canActivate: [authenticationLoginGuard],
   },
   { path: 'product/:id', component: ProductPageComponent },
   {
