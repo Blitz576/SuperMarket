@@ -14,13 +14,24 @@ class WishlistController extends Controller
         $request->validate([
             'product_id' => 'required|exists:products,id',
         ]);
+
+        $userId = Auth::id();
+        $productId = $request->product_id;
+
+        $existingWishlistItem = Wishlist::where('user_id', $userId)->where('product_id', $productId)->first();
+
+        if ($existingWishlistItem) {
+            return response()->json(['message' => 'Product already in wishlist'], 200);
+        }
+
         $wishlist = Wishlist::create([
-            'user_id' => Auth::id(),
-            'product_id' => $request->product_id,
+            'user_id' => $userId,
+            'product_id' => $productId,
         ]);
 
         return response()->json(['message' => 'Product added to wishlist', 'data' => $wishlist], 200);
     }
+
 
     public function delete($id)
     {
