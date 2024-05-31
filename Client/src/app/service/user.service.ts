@@ -40,7 +40,7 @@ export class UserService {
       'Content-Type': 'application/json',
       'Accept': 'application/json'
     });
-    return this.http.post<any>(this.logoutUrl ,{ headers });
+    return this.http.post<any>(this.logoutUrl ,{},{ headers });
   }
 
 }

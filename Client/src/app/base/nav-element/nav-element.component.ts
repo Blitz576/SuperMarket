@@ -38,10 +38,11 @@ export class NavElementComponent{
     let stringfiedToken = this.localStorage.getValue("loginToken");
     let encodedToken = ""
     if(stringfiedToken !== null){
-      let encodedToken = stringfiedToken;
+      encodedToken = stringfiedToken;
+      console.log(encodedToken);
     }
 
-    
+
    let logoutProcess = this.userService.logout(encodedToken).subscribe(
     {next:()=>{
       this.localStorage.removeValue('uEmail');
