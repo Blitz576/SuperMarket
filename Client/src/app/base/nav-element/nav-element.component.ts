@@ -12,9 +12,14 @@ import { UserService } from '../../service/user.service';
 })
 export class NavElementComponent{
 
-  constructor(private localStorage:LocalStorageService,private router:Router,private userService:UserService){}
+  id:any;
+  constructor(private localStorage:LocalStorageService,private router:Router,private userService:UserService){
+    this.checkLogin();
+    this.id = this.localStorage.getValue("user_id");
+  }
   isOpen = false;
   isLoggedIn=false;
+
   openNav(event: Event) {
     event.preventDefault();
     this.isOpen = true;
@@ -48,14 +53,14 @@ export class NavElementComponent{
       this.localStorage.removeValue('uEmail');
       this.localStorage.removeValue('loginToken');
       this.isLoggedIn=false;
-      this.router.navigate(['/auth']);     
+      this.router.navigate(['/auth']);
     },
     error:(error)=>{
       console.log(error);
-    } 
+    }
   }
    )
-   
+
   }
 
 }

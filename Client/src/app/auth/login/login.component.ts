@@ -47,7 +47,7 @@ export class LoginComponent implements OnDestroy {
 
   submitLogin() {
     try {
-      
+
         // Generate object
         let loggedInUserData: LoggedInUser = {
           email: this.user_mail,
@@ -70,10 +70,10 @@ export class LoginComponent implements OnDestroy {
           }
         });
     } catch (error) {
-      
+
       this.errorInSubmitting = 'show-error text-danger';
     }
-    
+
   }
 
   ngOnDestroy() {

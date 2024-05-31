@@ -42,7 +42,7 @@ class AuthController extends Controller
         $token = $user->createToken('API Token')->plainTextToken;
 
         return response()->json([
-            'user'=>$user,
+            'user_id'=>$user->id,
             'access_token' => $token,
             'token_type' => 'Bearer',
         ]);
@@ -51,5 +51,10 @@ class AuthController extends Controller
     {
         $request->user()->tokens()->delete();
         return response()->json(['message' => 'Logged out successfully']);
+    }
+
+    function getUser(Request $request,$id){
+        $user = User::find($id);
+        return response()->json($user);
     }
 }
