@@ -10,6 +10,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { CategoryComponent } from './category/category.component';
 import { ProductDetalisComponent } from './product-detalis/product-detalis.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { AboutPageComponent } from './about-page/about-page.component';
 
 export const routes: Routes = [
   // Add canActivate:[authenticationLoginGuard] To Your Critical Route For Authentication
@@ -19,6 +20,7 @@ export const routes: Routes = [
     redirectTo: '/home',
     pathMatch: 'full',
   },
+  { path: 'about', component: AboutPageComponent },
   { path: 'home', component: HomeComponent },
   {
     path: 'auth',
@@ -42,11 +44,11 @@ export const routes: Routes = [
   },
   {
     path: 'product/details/:slug',
-    component: ProductDetalisComponent
+    component: ProductDetalisComponent,
   },
   {
     path: 'profile/:id',
-    component: UserProfileComponent
+    component: UserProfileComponent,
   },
   { path: '**', component: NotFoundComponent },
 ];

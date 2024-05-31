@@ -5,7 +5,7 @@
   >
   <a href="#">About</a>
   <a href="#">Services</a>
-  <a routerLink="/profile/{{id}}" >Profile</a>
+  <a routerLink="/profile/{{ id }}">Profile</a>
   <a href="#">Contact</a>
   @if(!isLoggedIn){
   <a class="change-pointer" routerLink="/auth"
@@ -43,13 +43,19 @@
         class="navbar-nav me-auto mb-2 mb-lg-0 w-100 d-flex justify-content-evenly"
         style="margin-left: auto"
       >
-      <div class="d-flex justify-content-end align-items-center side-elements w-25">
-        <li class="nav-item mx-4">
-          <a class="nav-link active" aria-current="page" href="#"><i class="bi bi-house-door mx-2"></i>Home</a>
-        </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="#">Link</a>
-        </li>
+        <div
+          class="d-flex justify-content-end align-items-center side-elements w-25"
+        >
+          <li class="nav-item mx-4">
+            <a class="nav-link active" aria-current="page" href="#"
+              ><i class="bi bi-house-door mx-2"></i>Home</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/about" href="#"
+              ><i class="bi bi-info-circle mx-2"></i>About</a
+            >
+          </li>
         </div>
         <li class="nav-item mx-5">
           <div class="input-group rounded-pill">
@@ -70,13 +76,17 @@
           </div>
         </li>
         <div class="d-flex justify-content-evenly w-25 side-elements">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/cart"> <i class="bi bi-basket mx-1"></i> Cart</a>
-        </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/cart">
+              <i class="bi bi-basket mx-1"></i> Cart</a
+            >
+          </li>
 
-        <li class="nav-item ">
-          <a class="nav-link" routerLink="/watch-list"> <i class="bi bi-bag-heart mx-1"></i> Wishlist</a>
-        </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/watch-list">
+              <i class="bi bi-bag-heart mx-1"></i> Wishlist</a
+            >
+          </li>
         </div>
       </ul>
     </div>
