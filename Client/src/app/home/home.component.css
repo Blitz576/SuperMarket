@@ -13,3 +13,10 @@
 .text-danger-custom {
   color: #ad1e2c;
 }
+
+*,
+*::before,
+*::after {
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
