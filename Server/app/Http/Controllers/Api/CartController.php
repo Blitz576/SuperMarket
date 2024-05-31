@@ -62,10 +62,15 @@ class CartController extends Controller
         $cart_id = $request->get('cart_id');
         
         if ($user_id || $cart_id) {
-            $cart = Cart::with('cartItems:id,cart_id,product_id,quantity')
+            $cart = Cart::with(
+                [
+                    'cartItems:id,cart_id,product_id,quantity',
+                    'cartItems.product:id,price,sale_price',
+                    'cartItems.product.images:id,product_id,image'
+                ])
                 ->where('user_id', $user_id)
                 ->orwhere('id', $cart_id)
-                ->first();
+                ->get();
         } else {
             return response()->json(['message' => 'No cart found for the user', 'data' => null], 404);
         }

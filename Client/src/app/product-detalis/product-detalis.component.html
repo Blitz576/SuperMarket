@@ -1,0 +1,80 @@
+
+
+<!-- content -->
+<section class="py-5">
+  <div class="container">
+    <div class="row gx-5">
+      <aside class="col-lg-6">
+        <!-- image of index 0 -->
+        <div class="border rounded-4 mb-3 d-flex justify-content-center">
+          <a data-fslightbox="mygalley" class="rounded-4" target="_blank" data-type="image" href="https://mdbcdn.b-cdn.net/img/bootstrap-ecommerce/items/detail1/big.webp">
+            <img [src]="defaultImage" style="max-width: 100%; max-height: 100vh; margin: auto;" class="rounded-4 fit"  />
+          </a>
+        </div>
+        <!-- image of index 0 -->
+
+        <div class="d-flex justify-content-center mb-3">
+          <!-- for loop in image -->
+          @if (images.length > 0) {
+            @for (item of images.slice(1); track $index) {
+              <a data-fslightbox="mygalley" class="border mx-1 rounded-2" target="_blank" data-type="image" class="item-thumb">
+                <img width="60" height="60" class="rounded-2 m-2" [src]="item.image" />
+              </a>
+            }
+          }
+
+          <!-- end for loop image  -->
+        </div>
+
+      </aside>
+      <main class="col-lg-6">
+        <div class="ps-lg-3">
+          <h4 class="title text-dark">
+            {{product.title}}
+          </h4>
+          <div class="d-flex flex-row my-3">
+            <div class="text-warning mb-1 me-2">
+              <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">
+                <i class="fa" [ngClass]="star <= product.rating ? 'fa-star' : 'fa-star-o'"></i>
+              </ng-container>
+              <span class="ms-1">
+                {{product.rating}}
+              </span>
+            </div>
+            <span class="text-muted">
+              <i class="fas fa-shopping-basket fa-sm mx-1"></i>{{product.stock}} orders</span>
+            <span class="text-success ms-2">In stock</span>
+          </div>
+
+          <div class="mb-3">
+            <span class="h5">{{product.sale_price }}</span>
+            <span class="text-muted">/per box</span>
+          </div>
+
+          <p>
+            {{product.summary}}
+          </p>
+
+          <div class="row">
+            <dt class="col-3">Category:</dt>
+            <dd class="col-9">{{product.category.name}}</dd>
+
+            <dt class="col-3">Stac Holder</dt>
+            <dd class="col-9">{{product.user.name}}</dd>
+          </div>
+
+          <hr />
+
+          <a class="btn btn-primary shadow-0 m-2"> <i class="me-1 fa fa-shopping-basket"></i> Add to cart </a>
+          <a href="#" class="btn btn-light border border-secondary py-2 icon-hover px-3"> <i class="me-1 fa fa-heart fa-lg"></i> Save </a>
+        </div>
+      </main>
+    </div>
+  </div>
+</section>
+<!-- content -->
+
+
+
+
+
