@@ -49,4 +49,13 @@ export class UserService {
     return this.http.get<any>(api);
   }
 
+  getUserOrders(){
+    const api = `http://localhost:8000/api/orders`;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('loginToken')}`,
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    })
+    return this.http.get<any>(api ,{ headers });
+  }
 }
