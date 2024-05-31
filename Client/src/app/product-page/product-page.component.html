@@ -1,9 +1,13 @@
-<p>product-page works!</p>
-<div class="container">
+<div class="container p-3">
   <div class="row">
-    <div class="col">
-      <app-product-image-carousel></app-product-image-carousel>
+    <div class="col d-flex justify-content-center">
+      <app-product-image-carousel
+        class="my-auto p-2"
+      ></app-product-image-carousel>
     </div>
-    <div class="col"></div>
+
+    <div class="col" style="min-height: 80vh">
+      <app-product-disc class="p-2"></app-product-disc>
+    </div>
   </div>
 </div>
