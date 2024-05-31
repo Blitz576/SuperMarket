@@ -31,6 +31,7 @@ Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:sanct
 Route::post('checkout',[OrderController::class,'store'])->middleware('auth:sanctum');
 Route::get('orders',[OrderController::class,'show'])->middleware('auth:sanctum');
 
+
 Route::get('homepage/products',[ProductController::class,'index']);
 Route::get('products',[ProductController::class,'all_products']);
 Route::get('products/{slug}',[ProductController::class,'show']);

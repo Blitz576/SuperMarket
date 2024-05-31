@@ -12,7 +12,19 @@ import { Router } from '@angular/router';
 })
 export class UserProfileComponent implements OnInit{
 
-  user!:Profile ;
+  user:Profile={
+    id:0,
+  name:"",
+  email:"",
+  mobile_number:"",
+  email_verified_at:"",
+  gender:"",
+  role:"",
+  image:"",
+  status:"",
+  created_at:"",
+  updated_at:"",
+  } ;
   image:string = "localhost:8000/images/"
 
   constructor(private UserService:UserService , private router:Router){}
@@ -25,6 +37,9 @@ export class UserProfileComponent implements OnInit{
       this.image += this.user.image;
     });
 
+    this.UserService.getUserOrders().subscribe(data=>{
+      console.log(data);
+    })
   }
 
 
