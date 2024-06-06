@@ -12,22 +12,21 @@ import { FormsModule } from '@angular/forms';
 export class HeroComponent {
   slides = [
     {
-      Quote: 'Explore Our Best Products',
+      Quote: 'Sky is Your Limit',
       captionStyle: 'carousel-caption-1',
       imageUrl:
         'https://theme905-computer-shop.myshopify.com/cdn/shop/files/img_01_02109cc1-220a-4319-ab36-d43b5340f37a_1296x.png?v=1665429191',
-      productName: 'First slide label',
+      productName: 'Apple Watch Ultra',
       description:
-        'Some representative placeholder content for the first slide.',
+        ' Enjoy the ultimate Apple Watch experience with the Apple Watch Ultra. from 12$ a month',
     },
     {
-      Quote: 'We Are The Best',
+      Quote: 'Everything you need',
       captionStyle: 'carousel-caption',
       imageUrl:
         'https://theme905-computer-shop.myshopify.com/cdn/shop/files/img_34_1296x.png?v=1665467744',
-      productName: 'Second slide label',
-      description:
-        'Some representative placeholder content for the second slide.',
+      productName: 'On time every time ',
+      description: 'Start shopping now!.',
     },
     // {
     //   Quote:"Mohamed Ismail Elsayed Harby",

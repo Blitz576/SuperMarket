@@ -15,7 +15,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   login(user: LoggedInUser) {
-    
+
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Accept': 'application/json'
@@ -34,7 +34,7 @@ export class UserService {
   }
 
   logout(token: string) {
-    
+
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json',
@@ -43,4 +43,19 @@ export class UserService {
     return this.http.post<any>(this.logoutUrl ,{},{ headers });
   }
 
+
+  getProfile(id:any){
+    const api = `http://localhost:8000/api/user/${id}`;
+    return this.http.get<any>(api);
+  }
+
+  getUserOrders(){
+    const api = `http://localhost:8000/api/orders`;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('loginToken')}`,
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    })
+    return this.http.get<any>(api ,{ headers });
+  }
 }

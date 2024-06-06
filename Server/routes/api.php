@@ -26,9 +26,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
+Route::get('user/{id}', [AuthController::class, 'getUser']);
 Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 Route::post('checkout',[OrderController::class,'store'])->middleware('auth:sanctum');
 Route::get('orders',[OrderController::class,'show'])->middleware('auth:sanctum');
+
 
 Route::get('homepage/products',[ProductController::class,'index']);
 Route::get('products',[ProductController::class,'all_products']);

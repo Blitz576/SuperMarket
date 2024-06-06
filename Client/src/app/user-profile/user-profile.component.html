@@ -1,0 +1,120 @@
+<div class="container rounded bg-white mt-5 mb-5">
+  <div class="row">
+      <div class="col-md-3 border-right">
+          <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span class="font-weight-bold">Edogaru</span><span class="text-black-50"></span><span> </span></div>
+      </div>
+      <div class="col-md-5 border-right">
+          <div class="p-3 py-5">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                  <h4 class="text-right">Profile Settings</h4>
+              </div>
+              <div class="row mt-2">
+                  <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control" placeholder="first name" value="{{user.name}}"></div>
+                  <div class="col-md-6"><label class="labels" >Mobile</label><input type="text" class="form-control" value="{{user.mobile_number}}" placeholder="surname"></div>
+              </div>
+              <div class="row mt-3">
+                  <div class="col-md-12"><label class="labels">Email ID</label><input type="text" class="form-control" placeholder="enter email id" value="{{user.email}}"></div>
+              </div>
+              <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div>
+          </div>
+      </div>
+      <div class="col-md-4">
+          <div class="p-3 py-5">
+              <div class="d-flex justify-content-between align-items-center experience"><span>Edit Experience</span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Experience</span></div><br>
+              <table class="table table-border ">
+                <thead>
+                  <tr>
+                    <th>order</th>
+                    <th>Details</th>
+                  </tr>
+
+                  <tr>
+                    <th>1</th>
+                    <th><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalId">show Details</button></th>
+                  </tr>
+                </thead>
+              </table>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+
+
+<div
+  class="modal fade w-100"
+  id="modalId"
+  tabindex="-1"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+
+  role="dialog"
+  aria-labelledby="modalTitleId"
+  aria-hidden="true"
+
+>
+  <div
+    class="modal-dialog  modal-dialog-centered modal-lg"
+    role="document"
+  >
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalTitleId">
+          Modal title
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th> image</th>
+              <th>Qunitity</th>
+              <th>Total Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <img src="../../assets/iphone.png" class="w-25" alt="">
+              </td>
+              <td>2</td>
+              <td>40$</td>
+            </tr>
+            <tr>
+              <td>
+                <img src="../../assets/iphone.png" class="w-25" alt="">
+              </td>
+              <td>2</td>
+              <td>40$</td>
+            </tr>
+            <tr>
+              <td>
+                <img src="../../assets/iphone.png" class="w-25" alt="">
+              </td>
+              <td>2</td>
+              <td>40$</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+        >
+          Close
+        </button>
+        <button type="button" class="btn btn-primary">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
